@@ -1,6 +1,7 @@
 ---
-- name: create postfix instance
+- name: create postfix instances
   hosts: devops02
+  gather_facts: no
   vars:
     - role_postfix_instance_list:
       - {
