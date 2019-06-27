@@ -1,0 +1,13 @@
+[web]
+jcdevops02
+
+
+
+[all]
+jcdevops01
+jcdevops02
+jcdevops03
+jcdevops04
+
+[jenkins]
+jcdevops11
