@@ -1,0 +1,13 @@
+---
+- name: create postfix instance
+  hosts: devops02
+  vars:
+    - role_postfix_instance_list:
+      - {
+        user: jcadmin,
+        name: king,
+        port: 961,
+        group: AGE
+        }
+  roles:
+    - { role: role postfix, state: create }
