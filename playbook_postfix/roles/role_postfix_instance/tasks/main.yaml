@@ -1,12 +1,11 @@
 ---
-- name: Check taht all variables are defined
+- name: Check that all variables are defined
   assert:
     that:
-      - "{{ item.user }} is defined"
-      - "{{ item.name }} is defined"
-      - "{{ item.port }} is defined"
-      - "{{ item.group }} is defined"
-  with_items: "{{ role_postfix_instance_list }}"
+      - "{{ project_user }} is defined"
+      - "{{ postfix_name }} is defined"
+      - "{{ postfix_port }} is defined"
+      - "{{ postfix_group }} is defined"
 
 - name: Create postfix directories
   import_tasks: create_directory.yaml
@@ -16,6 +15,6 @@
   import_tasks: create_instance.yaml
   when: state in ['create']
 
-- name: Configure postfix instance
-  import_tasks: configure_instance.yaml
-  when: state in ['create']
+# - name: Configure postfix instance
+#   import_tasks: configure_instance.yaml
+#   when: state in ['create']
