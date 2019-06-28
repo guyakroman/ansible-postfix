@@ -3,12 +3,10 @@
   hosts: devops02
   gather_facts: no
   vars:
-    - role_postfix_instance_list:
-      - {
-        user: jcadmin,
-        name: kingSize,
-        port: 961,
-        group: AGE
+    project_user: jcadmin
+    postfix_name: kingSize
+    postfix_port: 961
+    postfix_group: AGE
         }
   roles:
-    - { role: role postfix, state: create }
+    - { role: role_postfix_instance, state: create }
