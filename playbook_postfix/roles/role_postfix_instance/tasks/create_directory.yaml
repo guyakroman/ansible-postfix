@@ -1,0 +1,6 @@
+---
+- name: create postfix directory
+  file:
+    path: "{{ role_postfix_conf }}/{{ item }}"
+    state: directory
+  with_items: "{{ role_conf_file }}"
