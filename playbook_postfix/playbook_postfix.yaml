@@ -1,6 +1,6 @@
 ---
 - name: Launch postfix instance creation
-  hosts: devops02
+  hosts: web
   gather_facts: no
   vars:
     project_user: jcadmin

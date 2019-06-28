@@ -7,7 +7,7 @@
       - "{{ postfix_port }} is defined"
       - "{{ postfix_group }} is defined"
 
-- name: 
+- name:
   block:
     - name: Create postfix directories
       import_tasks: create_directory.yaml
@@ -19,5 +19,4 @@
 #   import_tasks: configure_instance.yaml
 #   when: state in ['create']
   become: true
-  notify: Start postfix instance
   when: state in ['create']
