@@ -3,6 +3,5 @@ role_postfix_conf: /etc/postfix
 role_postfix_group: had
 role_postfix_dir:
   - conf
-  - queue
+  - queuea
   - data
-  
