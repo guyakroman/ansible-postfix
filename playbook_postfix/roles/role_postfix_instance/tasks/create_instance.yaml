@@ -10,7 +10,6 @@
       creates: {{ role_postfix_conf }}/{{ role_postfix_dir[0] | quote }}/main.cf"
   register: R_createInstance
 
-
-- name: Activate postfix instance
+- name: "Activate postfix instance {{ postfix_name }}"
   shell: postmulti -i postfix-{{ postfix_name | quote }} -e enable
   when: R_createInstance.rc == 0

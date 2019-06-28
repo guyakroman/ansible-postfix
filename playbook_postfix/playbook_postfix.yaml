@@ -1,5 +1,5 @@
 ---
-- name: create postfix instances
+- name: Launch postfix instance creation
   hosts: devops02
   gather_facts: no
   vars:

@@ -5,4 +5,4 @@
     dest: "{{ role_postfix_conf }}/{{ role_postfix_dir[0] }}/{{ item }}"
     path: "{{ role_postfix_conf }}/{{ item }}"
     state: directory
-  with_items: "{{ role_conf_file }}"
+  with_items: "{{ role_postfix_conf_file }}"
