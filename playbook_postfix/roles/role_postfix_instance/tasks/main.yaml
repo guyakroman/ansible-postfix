@@ -6,7 +6,7 @@
       - "{{ postfix_name }} is defined"
       - "{{ postfix_port }} is defined"
       - "{{ postfix_group }} is defined"
-  fail_msg: "Une variable n'est pas definie! Merci de bien renseigner tous les champs obligatoires"
+  #fail_msg: "Une variable n'est pas definie! Merci de bien renseigner tous les champs obligatoires"
 
 - name:
   block:
