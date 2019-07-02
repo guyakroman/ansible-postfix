@@ -7,7 +7,8 @@
     "data_directory = {{ role_postfix_conf| quote }}/{{ role_postfix_dir[2] | quote }}"
     creates: {{ role_postfix_conf | quote }}/{{ role_postfix_dir[0] | quote }}/main.cf
   register: R_createInstance
+  changed_when: R_createInstance.rc == 0
 
 - name: "Activate postfix instance {{ postfix_name }}"
-  shell: postmulti -i postfix-{{ postfix_name | quote }} -e enable
+  command: postmulti -i postfix-{{ postfix_name | quote }} -e enable
   when: R_createInstance.rc == 0

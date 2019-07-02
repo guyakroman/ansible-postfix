@@ -1,0 +1,16 @@
+{
+  "uploadOnSave": false,
+  "useAtomicWrites": false,
+  "deleteLocal": false,
+  "hostname": "192.168.1.65",
+  "port": "22",
+  "target": "/home/jcadmin/Ansible",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**"
+  ],
+  "username": "jcadmin",
+  "password": "jclab",
+  "watch": [],
+  "transport": "scp"
+}
