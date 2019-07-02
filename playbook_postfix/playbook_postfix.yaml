@@ -3,10 +3,10 @@
   hosts: web
   gather_facts: no
   vars:
-    project_user: jcadmin
-    postfix_name: king
-    postfix_port: 961
-    postfix_group: AGE
-    address_vip: phadp32@jalodata.fr # optionnel
+    project_user: "jcadmin"
+    postfix_name: "king"
+    postfix_port: "961"
+    postfix_group: "AGE"
+    address_vip: "phadp32@jalodata.fr" # optionnel
   roles:
     - { role: role_postfix_instance, state: create}
