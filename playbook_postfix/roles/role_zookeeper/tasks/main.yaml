@@ -1,0 +1,32 @@
+---
+- name: "create user {{ zk_name }}"
+  user:
+    name: "{{ zk_name }}"
+    uid: "{{ zk_uid }}"
+    groups: "{{ zk_group[0] }}, {{ zk_group[1] }}"
+
+- name: create directories
+  file:
+    path: {{ item }}
+    state: directory
+    owner: "{{ zk_name }}"
+    group: "{{ zk_group[1] }}"
+    recurse: yes
+  with_items:
+    - "{{ role_bigdata_dir }}"
+    - "{{ role_bigdata_log }}/{{ zk_name}}"
+    - "{{ zk_data }}"
+
+- name: "Extract zookeeper tar file into {{ zk_home }}"
+  unarchive:
+    src: "{{ repo }}/zookeeper*tar.gz"
+    dest: "{{ role_bigdata_dir }}"
+    owner: "{{ zk_name }}"
+    group: "{{ zk_group[1] }}"
+    recurse: yes
+
+- name: create symbolic link
+  file:
+    src: "{{ role_bigdata_dir }}/zookeeper*tar.gz"
+    dest: " {{ zk_name }}"
+    state: link

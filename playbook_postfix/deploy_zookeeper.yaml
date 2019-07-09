@@ -1,0 +1,15 @@
+---
+- name: deploy zookeeper
+  hosts: zookeeper
+  var:
+    zk_name: zookeeper
+    zk_uid: "5000"
+    zk_log: "{{ role_bigdata_log }}/{{ zk_name }}"
+    zk_home: "{{ role_bigdata_dir }}/{{ zk_name }}"
+    zk_data: "/data/{{ zk_name }}"
+    zk_group:
+      - "{{ zk_name }}"
+      - "{{ role_bigdata_group }}"
+    zk_bin: "{{ zk_home}}/bin"
+  role:
+    - { role: role_zookeeper, state: install}
