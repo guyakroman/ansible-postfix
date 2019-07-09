@@ -1,3 +1,0 @@
----
-- name: Start postfix instance
-  command: postmulti -i postfix-{{ postfix_name | quote }} -p start
