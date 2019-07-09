@@ -1,0 +1,12 @@
+---
+role_postfix_conf: "/etc/postfix/postfix-{{postfix_name}}"
+role_postfix_group: had
+role_address_vip: phadp32.jalodata.fr
+role_postfix_dir:
+  - conf
+  - queue
+  - data
+role_conf_file:
+  - main.cf
+  - master.cf
+  - virtual

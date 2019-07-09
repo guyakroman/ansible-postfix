@@ -1,0 +1,14 @@
+---
+- name: "Create postfix instance {{ postfix_name }}"
+  shell: >
+    postmulti -I postfix-{{ postfix_name | quote }} -G {{ potsfix_group | default ( role_postfix_group) }}
+    -e create "config_directory = {{ role_postfix_conf| quote }}/{{ role_postfix_dir[0] | quote }}"
+    "queue_directory = {{ role_postfix_conf| quote }}/{{ role_postfix_dir[1] | quote }}"
+    "data_directory = {{ role_postfix_conf| quote }}/{{ role_postfix_dir[2] | quote }}"
+    creates: {{ role_postfix_conf | quote }}/{{ role_postfix_dir[0] | quote }}/main.cf
+  register: R_createInstance
+  changed_when: R_createInstance.rc == 0
+
+- name: "Activate postfix instance {{ postfix_name }}"
+  command: postmulti -i postfix-{{ postfix_name | quote }} -e enable
+  when: R_createInstance.rc == 0

@@ -1,0 +1,23 @@
+---
+- name: Check that all variables are defined
+  assert:
+    that:
+      - "{{ project_user }} is defined"
+      - "{{ postfix_name }} is defined"
+      - "{{ postfix_port }} is defined"
+      - "{{ postfix_group }} is defined"
+  #fail_msg: "Une variable n'est pas definie! Merci de bien renseigner tous les champs obligatoires"
+
+- name:
+  block:
+    - name: Create postfix directories
+      import_tasks: create_directory.yaml
+
+    - name: Create postfix instance
+      import_tasks: create_instance.yaml
+
+# - name: Configure postfix instance
+#   import_tasks: configure_instance.yaml
+#   when: state in ['create']
+  become: true
+  when: state in ['create']
