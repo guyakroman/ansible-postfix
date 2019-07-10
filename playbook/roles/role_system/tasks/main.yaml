@@ -1,0 +1,28 @@
+---
+- name: install packages
+
+
+
+- name: Disable SELinux
+  selinux:
+    state: disabled
+
+- name: Disable Firewall
+  selinux:
+    state: disabled
+
+- name: configure ntpd
+  templates:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+
+
+
+- name: locate java install dir
+  command: which java
+  register: R_JavaHome
+
+- name: Configure java profile file
+  lineinfile:
+    line: "export JAVA_HOME"
+    dest: "export JAVA_HOME={{ R_JavaHome }}"

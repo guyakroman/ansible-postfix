@@ -3,7 +3,7 @@
   group:
     name: "{{ item }}"
     state: present
-  loop:
+  with_items:
     - "{{ zk_group}} "
 
 - name: "create user {{ zk_name }}"
@@ -19,7 +19,7 @@
     owner: "{{ zk_name }}"
     group: "{{ zk_group[1] }}"
     recurse: yes
-  loop:
+  with_items:
     - "{{ role_bigdata_dir }}"
     - "{{ role_bigdata_log }}/{{ zk_name}}"
     - "{{ zk_data }}"

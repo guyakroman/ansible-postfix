@@ -1,0 +1,6 @@
+---
+- name: start ntpd
+  service:
+    name: ntpd
+    state: started
+    

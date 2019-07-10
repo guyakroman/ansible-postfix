@@ -11,3 +11,4 @@ zk_initLimit: 10
 zk_syncLimit: 5
 zk_serverPort: 2888
 zk_serverClientPort: 3888
+system_initd: /etc/init.d

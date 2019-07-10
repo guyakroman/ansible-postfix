@@ -1,0 +1,6 @@
+---
+- name: start zookeeper
+  service:
+    name: zookeeper
+    pattern: "{{ zk_bin }}/zh_server.sh"
+    state: started

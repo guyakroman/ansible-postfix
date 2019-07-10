@@ -1,0 +1,6 @@
+---
+- name: "deploy {{ zk_name }} daemon"
+  templates:
+    src: zk_daemon.sh.j2
+    dest: "{{ system_initd }}/{{ zk_name }}"
+    mode: "0755"

@@ -23,6 +23,6 @@ syncLimit={{ zk_syncLimit }}
 #server.2=jchadcen12.jalodata.fr:2888:3888
 #server.3=jchadcen19.jalodata.fr:2888:3888
 
-{% for host in groups.zookeeper %}
-server.{{ groups.zookeeper.index + 1 }}={{ hostvars[host].inventory_hostname}}:{{ zk_serverPort }}:{{ zk_serverClientPort}}
+{% for host in groups['zookeeper'] %}
+server.{{ loop.index }}={{ hostvars[host].ansible_fqdn }}:{{ zk_serverPort }}:{{ zk_serverClientPort}}
 {% endfor %}

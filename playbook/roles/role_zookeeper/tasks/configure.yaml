@@ -1,10 +1,10 @@
 ---
-- name: "Configure file {{ hostvars[inventory_hostname]}}"
+- name: "Configure {{ zk_name }} file "
   template:
     src: "zoo_sample.cfg.j2"
     dest: "{{ zk_conf}}/zoo.cfg"
 
-- name: "Copy MyId file to {{ hostvars[inventory_hostname] }}"
+- name: "Insert {{ zk_name }} id file "
   template:
     src: myid.j2
     dest: "{{ zk_data }}/myid"
