@@ -1,0 +1,10 @@
+---
+- name: Configure a system
+  hosts: toto
+  vars:
+    app_user: kafka
+    app_name: kafka
+    app_name_short: KAFKA
+    app_group:
+      - { name: zookeeper, gid: 5000 }
+      - { name: kafka, gid: 5001 }

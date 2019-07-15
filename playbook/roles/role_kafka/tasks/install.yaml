@@ -1,0 +1,28 @@
+---
+- name: create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ app_name }}"
+    group: "{{ app_group[1] }}"
+    mode: "0770"
+    recurse: yes
+  with_items:
+    - "{{ role_bigdata_dir }}"
+    - "{{ role_bigdata_log }}/{{ app_name}}"
+    - "{{ app_data }}"
+
+- name: "Extract {{ app_name }} tar file into {{ app_home }}"
+  unarchive:
+    src: "{{ repo }}/{{ app_name }}-{{ app_version }}.tar.gz"
+    dest: "{{ role_bigdata_dir }}"
+    owner: "{{ app_name }}"
+    group: "{{ app_group[1] }}"
+    remote_src: yes
+    creates: "{{ role_bigdata_dir }}/{{ app_name }}"
+
+- name: "create symbolic link for {{ app_name }}"
+  file:
+    src: "{{ role_bigdata_dir }}/{{ app_name }}-{{ app_version }}"
+    dest: "{{ role_bigdata_dir }}/{{ app_name }}"
+    state: link

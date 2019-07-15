@@ -1,11 +1,17 @@
 [web]
 jcdevops02
 
+[kafka]
+jcdevops24
+
+[admin]
+jcdevops01
+
 [all]
 jcdevops01
-jcdevops02
-jcdevops03
-jcdevops04
+jcdevops20
+jcdevops22
+jcdevops23
 
 [jenkins]
 jcdevops11

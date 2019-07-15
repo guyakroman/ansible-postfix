@@ -14,3 +14,13 @@
 - name: Configure zookeeper
   import_tasks: configure.yaml
   when: state in ['install']
+
+- name: Install daemon zookeeper
+  import_tasks: create_daemon.yaml
+  when: state in ['install']
+
+- name: Install hosts
+  include_role:
+    name: role_system
+    tasks_from: deploy_hosts.yaml
+  when: state in ['install']

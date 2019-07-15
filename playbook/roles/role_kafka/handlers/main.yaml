@@ -1,5 +1,5 @@
 ---
-- name: restart ntpd
+- name: Start kafla service
   servie:
     name: ntpd
     state: restarted

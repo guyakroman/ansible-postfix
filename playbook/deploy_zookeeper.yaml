@@ -1,18 +1,19 @@
 ---
 - name: deploy zookeeper
   hosts: zookeeper
+  gather_facts: yes
   become: true
   vars:
     repo: /home/jcadmin/repo
-    zk_name: zookeeper
-    zk_uid: "5000"
-    zk_log: "{{ role_bigdata_log }}/{{ zk_name }}"
-    zk_home: "{{ role_bigdata_dir }}/{{ zk_name }}"
-    zk_data: "/data/{{ zk_name }}"
-    zk_group:
-      - "{{ zk_name }}"
+    app_name: zookeeper
+    app_uid: "5000"
+    app_log: "{{ role_bigdata_log }}/{{ app_name }}"
+    app_home: "{{ role_bigdata_dir }}/{{ app_name }}"
+    app_data: "/data/{{ app_name }}"
+    app_group:
+      - "{{ app_name }}"
       - "{{ role_bigdata_group }}"
-    zk_bin: "{{ zk_home }}/bin"
-    zk_conf: "{{ zk_home }}/conf"
+    app_bin: "{{ app_home }}/bin"
+    app_conf: "{{ app_home }}/conf"
   roles:
     - { role: role_zookeeper, state: install}

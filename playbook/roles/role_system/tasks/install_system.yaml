@@ -1,0 +1,32 @@
+---
+- name: install packages
+  yum:
+    name: " {{ packages }}"
+    valid_cache: yes
+  vars:
+    packages:
+      - dict
+      - jq
+      - wget
+      - maven
+      - unzip
+      - vim
+      - net-tools
+      - nc
+      - ntp
+      - psmisc
+      - telnet
+      - epel-release
+      - bind-utils-9.9.4-61.el7_5.1.x86_64
+  ignore_errors: true
+
+# - name: download package java Version 8 Update 211
+#   get_url:
+#     url: https://javadl.oracle.com/webapps/download/AutoDL?BundleId=238718_478a62b7d4e34b78b671c754eaaf38ab
+#     dest: "{{ role_sys_repo }}"
+#     register: R_java
+
+# - name : install java
+#   yum:
+#     name: "{{ R_java }}"
+#     command:

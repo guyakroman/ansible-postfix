@@ -1,0 +1,8 @@
+---
+- name: Install Application
+  import_tasks: install_application.yaml
+  when: state in ['install']
+
+- name: create daemon
+  import_tasks: create_daemon.yaml
+  when: state in ['install']

@@ -1,0 +1,5 @@
+---
+- name: configure the environement script
+  template:
+    src: "{{ zkEnv.sh }}.j2"
+    dest: "{{ zh_bin }}/zkEnv.sh"

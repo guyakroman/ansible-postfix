@@ -9,11 +9,11 @@
     path: "{{ repo }}"
     state: directory
 
-- name: "Copy zookeeper tar file on hostvars['hosts']"
-  copy:
-    src: "{{ repo }}/zookeeper-3.4.14.tar.gz"
-    dest: "{{ role_bigdata_dir }}"
-  delegate_to: localhost
+# - name: "Copy zookeeper tar file on hostvars['hosts']"
+#   copy:
+#     src: "{{ repo }}/{{ app_name }}-{{ app_version }}.tar.gz"
+#     dest: "{{ role_bigdata_dir }}"
+#   delegate_to: localhost
 
 # - name: download zookeeper binary file
 #   local_action:

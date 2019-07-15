@@ -1,28 +1,20 @@
 ---
 - name: install packages
+  import_tasks: install_system.yaml
+  when: state in ['install']
 
+- name: Cretae users
+  import_tasks: create_user.yaml
+  when: state in ['install']
 
+# - name: Configure /etc/hosts
+#   import_tasks: deploy_hosts.yaml
+#   when: state in ['install']
 
-- name: Disable SELinux
-  selinux:
-    state: disabled
+- name: Disable Services
+  import_tasks: disable_services.yaml
+  when: state in ['install']
 
-- name: Disable Firewall
-  selinux:
-    state: disabled
-
-- name: configure ntpd
-  templates:
-    src: ntp.conf.j2
-    dest: /etc/ntp.conf
-
-
-
-- name: locate java install dir
-  command: which java
-  register: R_JavaHome
-
-- name: Configure java profile file
-  lineinfile:
-    line: "export JAVA_HOME"
-    dest: "export JAVA_HOME={{ R_JavaHome }}"
+- name: Configure system
+  import_tasks: configure_system.yaml
+  when: state in ['install']

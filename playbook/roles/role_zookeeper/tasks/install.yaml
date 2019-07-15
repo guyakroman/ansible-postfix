@@ -18,6 +18,7 @@
     state: directory
     owner: "{{ zk_name }}"
     group: "{{ zk_group[1] }}"
+    mode: "0770"
     recurse: yes
   with_items:
     - "{{ role_bigdata_dir }}"
@@ -30,6 +31,7 @@
     dest: "{{ role_bigdata_dir }}"
     owner: "{{ zk_name }}"
     group: "{{ zk_group[1] }}"
+    remote_src: yes
     creates: "{{ role_bigdata_dir }}/{{ zk_name }}"
 
 - name: create symbolic link

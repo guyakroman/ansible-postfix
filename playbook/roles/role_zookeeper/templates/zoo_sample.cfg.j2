@@ -1,8 +1,8 @@
 # the directory where the snapshot is stored.
-dataDir={{ zk_data }}
+dataDir={{ app_data }}
 
 # the port at which the clients will connect
-clientPort={{ zk_port }}
+clientPort={{ app_port }}
 
 # disable the per-ip limit on the number of connections since this is a non-production config
 maxClientCnxns=0
@@ -11,12 +11,12 @@ maxClientCnxns=0
 ticktTime=2000
 
 # Nombre de tentatives de synchronisation
-initLimit={{ zk_initLimit }}
+initLimit={{ app_initLimit }}
 
 # donc en gros, il faut 20s (2000*10) pour se synchroniser
 
 # Nbre de requetes avant acquittement
-syncLimit={{ zk_syncLimit }}
+syncLimit={{ app_syncLimit }}
 
 # zookeeper servers
 #server.1=jchadcen11.jalodata.fr:2888:3888
@@ -24,5 +24,5 @@ syncLimit={{ zk_syncLimit }}
 #server.3=jchadcen19.jalodata.fr:2888:3888
 
 {% for host in groups['zookeeper'] %}
-server.{{ loop.index }}={{ hostvars[host].ansible_fqdn }}:{{ zk_serverPort }}:{{ zk_serverClientPort}}
+server.{{ loop.index }}={{ hostvars[host].ansible_fqdn }}:{{ app_serverPort }}:{{ app_serverClientPort}}
 {% endfor %}

@@ -1,0 +1,16 @@
+---
+- name: deploy cluster kafka
+  hosts: kafka
+  become: true
+  vars:
+    app_name: kafka
+    app_user: kafka
+    app_name_short: KAFKA
+    app_group:
+      - { name: kafka, gid: 5001 }
+      - { name: bigdata, gid: 5000 }
+    app_uid: 1001
+  roles:
+    - { role: role_system, state: install }
+    - { role: role_install_application, state: install }
+    - { role: role_kafka , state: install }
