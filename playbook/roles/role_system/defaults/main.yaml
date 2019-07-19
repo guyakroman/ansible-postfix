@@ -1,0 +1,25 @@
+---
+sys_user: jcadmin
+sys_group: bigdata
+sys_uid: 1001
+sys_var: /var/log/bigdata
+sys_data: /data
+sys_profile: /etc/profile.d
+sys_conf: /etc
+sys_bin: /opt/cluster
+
+
+packages:
+  # - dict
+  # - jq
+  # - wget
+  # - maven
+  - epel-release
+  - unzip
+  - vim
+  - net-tools
+  - nc
+  - ntp
+  - psmisc
+  - telnet
+  - epel-release

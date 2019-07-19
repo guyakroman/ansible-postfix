@@ -1,0 +1,11 @@
+---
+- name: deploy kafla cluster
+  hosts: kafka
+  vars:
+    app_name: kafka
+    app_user: "{{ app_name }}"
+    app_gid: 5001
+    app_uid: 5001
+  roles:
+    - { role: role_system }
+    - { role: role_applicatif }

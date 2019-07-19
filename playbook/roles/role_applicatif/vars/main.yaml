@@ -1,0 +1,14 @@
+---
+sys_user: jcadmin
+sys_group: bigdata
+sys_uid: 1001
+sys_var: /var/log/bigdata
+sys_data: /data
+sys_profile: /etc/profile.d
+sys_conf: /etc
+sys_bin: /opt/cluster
+
+app_data: "{{ sys_data }}/{{ app_name }}"
+app_var: "{{ sys_var }}/{{ app_name }}"
+app_home: "{{ sys_bin }}/{{ app_name }}"
+app_profile: "{{ sys_profile }}/{{ app_name }}.sh"

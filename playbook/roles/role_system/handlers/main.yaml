@@ -1,5 +1,0 @@
----
-- name: restart ntpd
-  servie:
-    name: ntpd
-    state: restarted
