@@ -1,0 +1,18 @@
+---
+role_sys_user: jcadmin
+role_sys_profile: /etc/profile.d
+role_sys_temp_profile: profile
+role_sys_init: /etc/init.d
+role_sys_bin: /opt/cluster
+role_sys_repo: "/home/{{ role_sys_user }}/repo"
+role_app_group: bigdata
+role_sys_log: /var/log
+role_app_log: /var/log/bigdata
+role_sys_data: /data
+role_sys_dir:
+  - "{{ role_sys_data }}"
+  - "{{ role_sys_bin }}"
+  - "{{ role_sys_log }}"
+  - "{{ role_app_log }}"
+role_sys_mode: "0775"
+role_sys_uid: 1001

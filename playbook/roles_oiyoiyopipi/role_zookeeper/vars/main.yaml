@@ -1,0 +1,14 @@
+---
+role_bigdata_group: bigdata
+role_bigdata_log: "/var/log/bigdata"
+role_bigdata_dir: /opt/cluster
+role_app_dir:
+  - "{{ role_bigdata_dir }}"
+  - "{{ role_bigdata_log }}"
+
+app_port: 2181
+app_initLimit: 10
+app_syncLimit: 5
+app_serverPort: 2888
+app_serverClientPort: 3888
+system_initd: /etc/init.d

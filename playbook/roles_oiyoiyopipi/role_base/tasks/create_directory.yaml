@@ -1,0 +1,10 @@
+---
+- name: create directory
+  file:
+    path: "{{ item }}"
+    owner: "{{ app_user }}"
+    group: "{{ role_sys_group }}"
+    state: directory
+    mode: "{{ role_sys_mode }}"
+  with_items:
+    - "{{ role_sys_dir }}"

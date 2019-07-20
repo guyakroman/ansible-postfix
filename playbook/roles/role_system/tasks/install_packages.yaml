@@ -1,10 +1,11 @@
 ---
 - name: install packages
   yum:
-    name: " {{ packages }}"
+    name: " {{ item }}"
     update_cache: yes
-  vars:
+  with_items:
     - "{{ packages }}"
+  ignore_errors: true
 
 - name: configure ntp and hosts
   template:
@@ -13,4 +14,7 @@
   with_items:
     - ntp.conf
     - hosts
-  notify: restart ntp
+  #notify: restart ntp
+
+# - name: force synchronisation ntp
+#   command: ntpdate fr.pool.ntp.org

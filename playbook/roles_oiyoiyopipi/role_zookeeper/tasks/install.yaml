@@ -1,0 +1,41 @@
+---
+- name : create group zookeeper
+  group:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ app_group}} "
+
+- name: "create user {{ app_name }}"
+  user:
+    name: "{{ app_name }}"
+    uid: "{{ app_uid }}"
+    groups: "{{ app_group[0] }}, {{ app_group[1] }}"
+
+- name: create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ app_name }}"
+    group: "{{ app_group[1] }}"
+    mode: "0770"
+    recurse: yes
+  with_items:
+    - "{{ role_bigdata_dir }}"
+    - "{{ role_bigdata_log }}/{{ app_name}}"
+    - "{{ app_data }}"
+
+- name: "Extract zookeeper tar file into {{ app_home }}"
+  unarchive:
+    src: "{{ repo }}/zookeeper-3.4.14.tar.gz"
+    dest: "{{ role_bigdata_dir }}"
+    owner: "{{ app_name }}"
+    group: "{{ app_group[1] }}"
+    remote_src: yes
+    creates: "{{ role_bigdata_dir }}/{{ app_name }}"
+
+- name: create symbolic link
+  file:
+    src: "{{ role_bigdata_dir }}/zookeeper-3.4.14"
+    dest: "{{ role_bigdata_dir }}/{{ app_name }}"
+    state: link

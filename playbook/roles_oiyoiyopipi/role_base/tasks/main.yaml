@@ -1,0 +1,28 @@
+---
+- import_tasks: deploy_ssh.yaml
+#
+#
+# - name: Installation system
+#   block:
+#     - name: install packages
+#       import_tasks: install_packages.yaml
+#
+#     # - name: install java package
+#     #   import_tasks: install_java.yaml
+#
+#     - name: disable Services
+#       import_tasks: disable_services.yaml
+#
+#     - name: create users
+#       import_tasks: create_user.yaml
+#
+#     - name: create_directory
+#       import_tasks: create_directory.yaml
+#
+#     - name: deploy hosts
+#       import_tasks: deploy_hosts.yaml
+#
+#     - name: enable service
+#       import_tasks: enable_service.yaml
+#   when: state in ['install']
+#   become: true

@@ -1,0 +1,22 @@
+---
+- name: install packages
+  yum:
+    name: " {{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+      # - dict
+      # - jq
+      # - wget
+      # - maven
+      - epel-release
+      - unzip
+      - vim
+      - net-tools
+      - nc
+      - ntp
+      - psmisc
+      - telnet
+      - epel-release
+      # - bind-utils-9.9.4-61.el7_5.1.x86_64
+  ignore_errors: true

@@ -5,19 +5,8 @@
     state: directory
     group: "{{ sys_group }}"
     mode: "0774"
+    recurse: yes
   with_items:
-    - "{{ sys_bin }}"
+    - "{{ app_repo }}"
     - "{{ app_data }}"
-    - "{{ sys_var }}"
-
-- name: "add group {{ app_group }}"
-  group: "{{ app_group }}"
-  gid: "{{ app_gid }}"
-  state: present
-
-- name: create user
-  user:
-    name: "{{ app_user }}"
-    groups: "{{sys_group}},{{ app_group }}"
-    append: yes
-    uid: "{{ app_uid }}"
+    - "{{ app_var }}"

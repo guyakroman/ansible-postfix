@@ -1,0 +1,14 @@
+---
+  - block:
+    - name: manage hosts
+      import_tasks: manage_hosts.yaml
+
+    - name: manage ssh
+      import_tasks: manage_ssh.yaml
+
+    - name: packages
+      import_tasks: install_packages.yaml
+
+    - name: create directory
+      import_tasks: create_directory.yaml
+    when: state in ['install']

@@ -1,0 +1,8 @@
+---
+  - block:
+    - name: create directory
+      import_tasks: create_directory.yaml
+
+    - name: manage profile
+      import_tasks: manage_profile.yaml
+    when: state in ['install']

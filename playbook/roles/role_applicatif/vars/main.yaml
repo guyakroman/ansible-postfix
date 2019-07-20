@@ -7,6 +7,7 @@ sys_data: /data
 sys_profile: /etc/profile.d
 sys_conf: /etc
 sys_bin: /opt/cluster
+sys_repo: "/home/{{ sys_user}}/repo"
 
 app_data: "{{ sys_data }}/{{ app_name }}"
 app_var: "{{ sys_var }}/{{ app_name }}"
