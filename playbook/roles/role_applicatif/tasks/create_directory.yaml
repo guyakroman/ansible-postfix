@@ -6,7 +6,7 @@
     group: "{{ sys_group }}"
     mode: "0774"
     recurse: yes
-  with_items:
-    - "{{ app_repo }}"
+    owner: "{{ app_user }}"
+  loop:
     - "{{ app_data }}"
     - "{{ app_var }}"

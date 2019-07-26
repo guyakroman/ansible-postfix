@@ -1,8 +1,15 @@
 ---
-  - block:
-    - name: create directory
-      import_tasks: create_directory.yaml
+- name: include default variables
+  include_vars:
+    dir: /home/jcadmin/Ansible/playbook/roles/role_system/defaults
 
-    - name: manage profile
-      import_tasks: manage_profile.yaml
-    when: state in ['install']
+- block:
+  - name: create directory
+    import_tasks: create_directory.yaml
+  #
+  # - name: create profile
+  #   import_tasks: manage_profile.yaml
+  #
+  - name: Install binary
+    import_tasks: install_binary.yaml
+  when: state in ['install']

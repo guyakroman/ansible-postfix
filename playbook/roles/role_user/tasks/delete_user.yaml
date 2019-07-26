@@ -1,0 +1,10 @@
+---
+- name: "delete group {{ app_group }}"
+  group:
+    name: "{{ app_group }}"
+    state: absent
+
+- name: delete user
+  user:
+    name: "{{ app_user }}"
+    uid: "{{ app_uid }}"

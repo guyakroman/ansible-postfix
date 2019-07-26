@@ -1,0 +1,37 @@
+---
+- name: check if binary file is already download
+  shell: "ls {{ sys_repo}} | grep {{ binary_name | quote }}"
+  register: R_check_binary
+  delegate_to: localhost
+
+- name: download binary file
+  get_url:
+    url: " {{ app_url }}"
+    dest: "{{ sys_repo }}"
+    owner: "{{ sys_user }}"
+    group: "{{ sys_group }}"
+  delegate_to: localhost
+  when: R_check_binary.rc != 0
+
+- name: unarchive the binary tar file on target
+  unarchive:
+    src: "{{ sys_repo }}/{{ binary_name }}{{ binary_extention_file }}"
+    dest: "{{ sys_bin }}"
+    owner: "{{ app_user }}"
+    group: "{{ sys_group }}"
+    copy: yes
+    creates: "{{ sys_bin }}/{{ binary_name }}"
+
+- name: "create link for {{ app_name }}"
+  file:
+    src: "{{ sys_bin }}/{{binary_name}}"
+    dest: "{{ app_home }}"
+    owner: "{{ app_user }}"
+    group: "{{ sys_group }}"
+    state: link
+# - name: install packages
+#   yum:
+#     name: " {{ packages }}"
+#     update_cache: yes
+#   vars:
+#     - "{{ packages }}"

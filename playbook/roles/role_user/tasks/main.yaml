@@ -1,0 +1,12 @@
+---
+# - name: include default variables
+#   include_vars:
+#     dir: ../../role_system/defaults/main.yml
+
+- name:
+  import_tasks: create_user.yaml
+  when: state in ['install','create']
+
+- name:
+  import_tasks: delete_user.yaml
+  when: state in ['absent','delete']

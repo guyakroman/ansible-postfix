@@ -1,13 +1,18 @@
 ---
 - name: deploy kafla cluster
   hosts: kafka
+  gather_facts: no
   become: true
   vars:
+    app_url: http://apache.crihan.fr/dist/kafka/2.3.0/kafka_2.11-2.3.0.tgz
+    binary_name: "kafka_2.11-2.3.0"
+    binary_extention_file: ".tgz"
     app_name: kafka
     app_user: "{{ app_name }}"
-    app_group: kafka
-    app_gid: 5001
-    app_uid: 5001
+    app_group: "kafka"
+    app_gid: "5001"
+    app_uid: "5001"
   roles:
     - { role: role_system, state: install }
-    - { role: role_applicatif }
+    - { role: role_user, state: create }
+    - { role: role_applicatif, state: install }

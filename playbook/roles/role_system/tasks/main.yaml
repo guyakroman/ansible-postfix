@@ -1,5 +1,18 @@
 ---
   - block:
+    - name: "create group {{ sys_group }}"
+      group:
+        name: "{{ sys_group }}"
+        gid: "{{ sys_gid }}"
+        state: present
+
+    - name: "create user {{ sys_user }}"
+      user:
+        name: "{{ sys_user }}"
+        groups: "{{ sys_group }}"
+        append: yes
+        uid: "{{ sys_uid }}"
+
     - name: manage hosts
       import_tasks: manage_hosts.yaml
 
@@ -9,6 +22,9 @@
     - name: packages
       import_tasks: install_packages.yaml
 
-    - name: create directory
-      import_tasks: create_directory.yaml
+    - name: disable service
+      import_tasks: disable_service.yaml
+
+    - name: enable service
+      import_tasks: enable_service.yaml
     when: state in ['install']

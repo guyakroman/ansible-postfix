@@ -1,9 +1,0 @@
----
-- name: "configure profile.d for {{ app_name }}"
-  template:
-    src: "{{ app_name }}.sh.j2"
-    dest: "{{ role_sys_profile }}/{{ app_name }}.sh"
-
-- name: "Execute profile.d for {{ app_name }}"
-  command: . {{ role_sys_profile | quote }}/{{ app_name | quote }}.sh
-  ignore_errors: true

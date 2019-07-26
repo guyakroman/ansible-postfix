@@ -1,20 +1,21 @@
 ---
 sys_user: jcadmin
-sys_group: bigdata
+sys_group: hadoop
 sys_uid: 1001
-sys_var: /var/log/bigdata
+sys_gid: 2001
+sys_var: "/var/log/{{ sys_group }}"
 sys_data: /data
 sys_profile: /etc/profile.d
 sys_conf: /etc
 sys_bin: /opt/cluster
-
+sys_repo: "/home/{{ sys_user}}/repo"
 
 packages:
   # - dict
   # - jq
   # - wget
   # - maven
-  - epel-release
+  #- epel-release
   - unzip
   - vim
   - net-tools
@@ -22,4 +23,3 @@ packages:
   - ntp
   - psmisc
   - telnet
-  - epel-release
