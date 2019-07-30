@@ -2,8 +2,8 @@
 - name: "configure profile.d for {{ app_name }}"
   template:
     src: "profile.j2"
-    dest: "{{app_profile}}"
+    dest: "{{item.profile}}"
 
 - name: "Execute profile.d for {{ app_name }}"
-  command: ". {{app_profile}}"
+  command: ". {{.item.profile}}"
   ignore_errors: true

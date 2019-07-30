@@ -1,18 +1,5 @@
 ---
   - block:
-    - name: "create group {{ sys_group }}"
-      group:
-        name: "{{ sys_group }}"
-        gid: "{{ sys_gid }}"
-        state: present
-
-    - name: "create user {{ sys_user }}"
-      user:
-        name: "{{ sys_user }}"
-        groups: "{{ sys_group }}"
-        append: yes
-        uid: "{{ sys_uid }}"
-
     - name: manage hosts
       import_tasks: manage_hosts.yaml
 

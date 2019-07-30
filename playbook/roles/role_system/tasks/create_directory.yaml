@@ -1,12 +1,21 @@
 ---
+- name: "create group {{ item.group }}"
+  group:
+    name: "{{ item.group }}"
+    gid: "{{ item.gid }}"
+    state: present
+
+- name: "create user {{ item.user }}"
+  user:
+    name: "{{ item.user }}"
+    groups: "{{ item.group }}"
+    append: yes
+    uid: "{{ item.uid }}"
+
 - name: create directory
   file:
     path: "{{ item }}"
     state: directory
-    group: "{{ sys_group }}"
+    group: "{{ item.group }}"
     mode: "0774"
-  with_items:
-    - "{{ sys_bin }}"
-    - "{{ sys_data }}"
-    - "{{ sys_var }}"
-    - "{{ sys_repo }}"
+  loop: "{{ role_system_dir }}"

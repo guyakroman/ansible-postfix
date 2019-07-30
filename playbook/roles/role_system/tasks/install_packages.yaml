@@ -1,7 +1,13 @@
 ---
-- name: install packages
+- name: download java binary
+  get_url:
+    url: https://javadl.oracle.com/webapps/download/AutoDL?BundleId=239847_230deb18db3e4014bb8e3e8324f81b43
+    dest: "{{ item.repo }}"
+    owner: "{{ item.user}}"
+
+- name: install package
   yum:
-    name: " {{ packages }}"
+    name: " {{ role_system_package }}"
     update_cache: yes
   ignore_errors: true
 
@@ -13,6 +19,19 @@
     - ntp.conf
     - hosts
   notify: restart ntp
+
+- name: configure java
+  shell: which java
+  register: R_java
+
+- name: configure java
+  template:
+    src: "java.sh.j2"
+    dest: "{{ item.profile }}/java.sh"
+  when: R_java.rc == 0
+
+- name: execute profile.d
+  shell: . {{ item.profile }}/java.sh
 
 # - name: force synchronisation ntp
 #   command: ntpdate fr.pool.ntp.org

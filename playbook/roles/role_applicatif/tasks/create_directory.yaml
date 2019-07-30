@@ -6,7 +6,7 @@
     group: "{{ sys_group }}"
     mode: "0774"
     recurse: yes
-    owner: "{{ app_user }}"
+    owner: "{{ item.user }}"
   loop:
-    - "{{ app_data }}"
-    - "{{ app_var }}"
+    - "{{ item.data }}"
+    - "{{ item.var }}"
