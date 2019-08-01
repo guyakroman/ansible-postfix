@@ -1,0 +1,25 @@
+---
+- name: deploy jenkins
+  hosts: jenkins
+  gather_facts: no
+  become: true
+  vars:
+    # app_url: http://apache.crihan.fr/dist/kafka/2.3.0/kafka_2.11-2.3.0.tgz
+    # binary_name: "kafka_2.11-2.3.0"
+    # binary_extention_file: ".tgz"
+    app_name: jenkins
+    app_user: "{{ app_name }}"
+    app_group: "jenkins"
+    app_gid: "5005"
+    app_uid: "5005"
+  roles:
+    - { role: role_system, state: install }
+    - { role: role_user, state: create }
+    - { role: role_jenkins, state: install }
+
+  tasks:
+    - name: "add group {{ app_group }} to {{ sys_user }} "
+      user:
+        name: "{{ sys_user }}"
+        groups: "{{ app_group}}"
+        append: yes
