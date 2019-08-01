@@ -15,9 +15,12 @@ jcdevops22
 jcdevops23
 
 [jenkins]
-jcdevops11
+jcdevops130
 
 [zookeeper]
 jcdevops20
 jcdevops22
 jcdevops23
+
+[ansibletest]
+jcansibletest130

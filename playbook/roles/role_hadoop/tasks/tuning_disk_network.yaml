@@ -1,0 +1,19 @@
+---
+- name: Disable reserve space
+  command: "tune2fs -m 0 /dev/{{ item }}"
+  loop:
+    - "{{ sda_disk }}"
+
+- name: Enable jumbo frames on the Ethernet network by changing the MTU
+  lineinfile:
+    path: "/etc/sysconfig/network-scripts/{{ item }}"
+    regex: "^MTU=9000"
+    line: MTU=9000
+  loop:
+    - "{{ network_interfaces }}"
+
+- name: active TTL on JAVA
+  lineinfile:
+    path: "{{ java_security }}"
+    regex: "^networkaddress.cache.ttl=60"
+    line: networkaddress.cache.ttl=60

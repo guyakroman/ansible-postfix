@@ -1,0 +1,22 @@
+---
+- name: add jenkins repository
+  yum_repository:
+    name: jenkins repo
+    description: "repo for {{ item.name }}"
+    baseurl: "http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo"
+
+- name: "add {{ item.name }} key"
+  rpm_key:
+    state: present
+    key: "https://jenkins-ci.org/redhat/jenkins-ci.org.key"
+
+- name: Install {{ item.name }}
+  yum:
+    name: "{{ item.name }}"
+    update_cache: yes
+
+- name: enabled service
+  systemd:
+    name: "{{ item.name }}"
+    state: enable
+  notify: start jenkins

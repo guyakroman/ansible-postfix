@@ -1,0 +1,17 @@
+---
+# - name: Include vars of packages.yaml
+#   include_vars:
+#     file: defaults/packages.yaml
+#     name: packages.yaml
+
+- name: Install packages
+  import_tasks: install_packages.yaml
+  when: state in ['tuning']
+
+- name: Deploy tuning system
+  import_tasks: tuning_operation_system.yaml
+  when: state in ['tuning']
+
+- name: Deploy tuning disk and network
+  import_tasks: tuning_disk_network.yaml
+  when: state in ['tuning']

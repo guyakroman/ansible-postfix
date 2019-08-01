@@ -1,35 +1,33 @@
 ---
-role_system:
-  - {
-    user: "jcadmin",
-    group: "hadoop",
-    uid: "1001",
-    gid: "2001",
-    log: "/var/log/hadoop",
-    data: "/data",
-    profile: "/etc/profile.d",
-    conf: "/etc",
-    apps: "/opt/cluster",
-    repo: "/home/jcadmin/repo"
-    }
+sys_user: "jcadmin"
+sys_group: "hadoop"
+sys_uid: "1001"
+sys_gid: "2001"
+sys_log: "/var/log/hadoop"
+sys_data: "/data"
+sys_profile: "/etc/profile.d"
+sys_conf: "/etc"
+sys_apps: "/opt/cluster"
+sys_repo: "/home/jcadmin/repo"
+
 
 role_system_dir:
-  - "{{ role_system.log }}"
-  - "{{ role_system.data }}"
-  - "{{ role_system.apps }}"
-  - "{{ role_system.repo }}"
+  - "{{ sys_log }}"
+  - "{{ sys_data }}"
+  - "{{ sys_apps }}"
+  - "{{ sys_repo }}"
 
 role_system_package:
   # - dict
   # - jq
   # - wget
   # - maven
-  - "epel-release"
-  #- java
+  - epel-release
+  - java-1.8.0-openjdk.x86_64
   - unzip
   - vim
-  - "net-tools"
+  - net-tools
   - nc
   - ntp
   - psmisc
-  - telnet
+  #- telnet

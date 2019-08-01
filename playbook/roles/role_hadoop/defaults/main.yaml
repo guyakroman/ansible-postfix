@@ -1,0 +1,37 @@
+---
+hdfs_nofile: 50000
+hdfs_noproc: 35000
+hadoop_nofile: 50000
+hadoop_noproc: 35000
+mapred_nofile: 50000
+mapred_noproc: 35000
+file_max: 600000
+disable_value: 0
+enable_value: 1
+kernel.shmmax: 68719476736
+kernel.shmall: 4294967296
+network_interfaces:
+  - ifcfg-enp0s3
+
+sysctl_file: /etc/sysctl.conf
+java_security: $JAVA_HOME/jre/lib/security/java.security
+
+sda_disk:
+  - sda1
+  - sda2
+
+packages:
+  - epel-release
+  - hdparm
+  - lsof
+  - unzip
+  - vim
+  - net-tools
+  - htop
+  - nc
+  - ntp
+  - psmisc
+  # - dict
+  # - jq
+  - wget
+  - maven

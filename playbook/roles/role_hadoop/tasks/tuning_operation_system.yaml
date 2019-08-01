@@ -1,0 +1,37 @@
+---
+- name: Change the process file limit
+  template:
+    src: limits.conf.j2
+    dest: /etc/security/limits.conf
+
+- name: deploy sysctl file
+  template:
+    src: sysctl.conf.j2
+    dest: "{{ sysctl_file }}"
+
+# - name: Change system wide open file limit
+#   lineinfile:
+#     path: "{{ sysctl_file }}"
+#     regex: '^fs.file-max = 600000'
+#     line: fs.file-max = 600000
+#
+# - name: disable swappiness
+#   lineinfile:
+#     path: "{{ sysctl_file }}"
+#     regex: '^vm.swappiness = 0'
+#     line: vm.swappiness = 0
+#
+# - name: Disable transparent huge pages (THP)
+#   lineinfile:
+#     path: "{{ sysctl_file }}"
+#     regex: '^vm.nr_hugepages = 0'
+#     line: vm.nr_hugepages = 0
+
+# - name: shared memory segment size and the total shared segment
+
+- name: make change effective
+  command: sysctl -p
+
+- name: check that change are ok
+  shell: grep -i HugePages_Total /proc/meminfo
+  register: R_checkchange

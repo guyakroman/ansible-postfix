@@ -1,0 +1,6 @@
+---
+- name: install packages
+  yum:
+    name: "{{ packages }}"
+    update_cache: yes
+  ignore_errors: true

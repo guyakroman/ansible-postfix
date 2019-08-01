@@ -1,0 +1,15 @@
+---
+packages:
+  - epel-release
+  - lsof
+  - unzip
+  - vim
+  - net-tools
+  - htop
+  - nc
+  - ntp
+  - psmisc
+  - dict
+  - jq
+  - wget
+  - maven

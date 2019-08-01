@@ -1,0 +1,10 @@
+---
+- name: Test cached read timings
+  command: "hdparm -T /dev/{{ item }}"
+  loop:
+    - "{{ sda_disk }}"
+
+- name: Test disk read timings
+  command: "hdparm -t --direct /dev/{{ item }}"
+  loop:
+    - "{{ sda_disk }}"

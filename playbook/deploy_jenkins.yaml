@@ -1,0 +1,19 @@
+---
+- name: deploy jenkins
+  hosts: jenkins
+  gather_facts: no
+  become: true
+  vars:
+    - jenkins:
+      - {
+        name: jenkins,
+        user: jenkins,
+        group: "jenkins",
+        gid: "5002",
+        uid: "5002"
+        }
+  roles:
+    - { role: role_system, state: install }
+    - { role: role_user, state: create }
+    # - { role: role_applicatif, state: install }
+    - { role: role_jenkins, state: install }

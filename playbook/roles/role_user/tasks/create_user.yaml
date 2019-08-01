@@ -8,6 +8,6 @@
 - name: "create user {{ item.user }}"
   user:
     name: "{{ item.user }}"
-    groups: "{{ item.group }}"
+    groups: "{{ item.group }},{{ sys_group }}"
     append: yes
     uid: "{{ item.uid }}"

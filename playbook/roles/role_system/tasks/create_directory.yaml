@@ -1,17 +1,4 @@
 ---
-- name: "create group {{ item.group }}"
-  group:
-    name: "{{ item.group }}"
-    gid: "{{ item.gid }}"
-    state: present
-
-- name: "create user {{ item.user }}"
-  user:
-    name: "{{ item.user }}"
-    groups: "{{ item.group }}"
-    append: yes
-    uid: "{{ item.uid }}"
-
 - name: create directory
   file:
     path: "{{ item }}"
