@@ -1,33 +1,15 @@
 ---
-sys_user: "jcadmin"
-sys_group: "hadoop"
-sys_uid: "1001"
-sys_gid: "2001"
-sys_log: "/var/log/hadoop"
-sys_data: "/data"
-sys_profile: "/etc/profile.d"
-sys_conf: "/etc"
-sys_apps: "/opt/cluster"
-sys_repo: "/home/jcadmin/repo"
-
-
-role_system_dir:
-  - "{{ sys_log }}"
-  - "{{ sys_data }}"
-  - "{{ sys_apps }}"
-  - "{{ sys_repo }}"
-
-role_system_package:
+sys_packages:
   # - dict
   # - jq
-  # - wget
+  # - "wget"
   # - maven
-  - epel-release
-  - java-1.8.0-openjdk.x86_64
-  - unzip
-  - vim
-  - net-tools
-  - nc
-  - ntp
-  - psmisc
-  #- telnet
+  #- "epel-release"
+  - "java"
+  - "unzip"
+  - "vim"
+  - "net-tools"
+  - "nc"
+  - "ntp"
+  - "psmisc"
+  - "telnet"

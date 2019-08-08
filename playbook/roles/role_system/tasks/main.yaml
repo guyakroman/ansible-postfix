@@ -1,5 +1,11 @@
 ---
   - block:
+    - name: create user {{ sys_user }}
+      include_role:
+        name: role_user
+      vars:
+        app_user: "{{ sys_user }}"
+
     - name: manage hosts
       import_tasks: manage_hosts.yaml
 

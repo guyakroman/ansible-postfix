@@ -1,0 +1,18 @@
+---
+- name: "Add yum repository for {{ app_name }}"
+  yum_repository:
+    name: "{{ app_name }}"
+    description: "{{ app_name }}-stable"
+    file: "/etc/yum.repos.d/{{ app_name }}"
+    baseurl: "http://pkg.jenkins.io/redhat-stable"
+    gpgcheck: yes
+    gpgkey: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+# - name: "Add key repository for {{ app_name }}"
+#   rpm_key:
+#     state: present
+#     key: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+- name: "install {{ app_name }}"
+  yum:
+    name: "{{ jenkins_packages }}"

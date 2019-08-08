@@ -1,0 +1,24 @@
+---
+sys_user: "jcadmin"
+sys_group: "hadoop"
+sys_uid: "1001"
+sys_gid: "2001"
+sys_log: "/var/log/hadoop"
+sys_data: "/data"
+sys_profile: "/etc/profile.d"
+sys_conf: "/etc"
+sys_mode: "0774"
+sys_apps: "/opt/cluster"
+sys_repo: "/home/jcadmin/repo"
+
+sys_dir:
+  - "{{ sys_log }}"
+  - "{{ sys_data }}"
+  - "{{ sys_apps }}"
+  - "{{ sys_repo }}"
+
+app_data: "{{ sys_data }}/{{ app_name }}"
+app_log: "{{ sys_log }}/{{ app_name }}"
+app_home: "{{ sys_apps }}/{{ app_name }}"
+app_bin: "{{ app_home }}/bin"
+app_profile: "{{ sys_profile }}/{{ app_name }}.sh"

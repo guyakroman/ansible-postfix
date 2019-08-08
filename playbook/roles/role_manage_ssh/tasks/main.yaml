@@ -1,7 +1,0 @@
----
-- name: generate ssh key
-  import_tasks: generate_key.yaml
-
-- name: deploy ssh key
-  import_tasks: deploy_key.yaml
-  

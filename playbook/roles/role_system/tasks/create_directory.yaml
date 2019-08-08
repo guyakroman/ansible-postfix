@@ -1,8 +1,8 @@
 ---
-- name: create directory
+- name: "create directory {{ item }}"
   file:
     path: "{{ item }}"
     state: directory
-    group: "{{ item.group }}"
-    mode: "0774"
-  loop: "{{ role_system_dir }}"
+    group: "{{ sys_group }}"
+    mode: "{{ sys_mode }}"
+  loop: "{{ sys_dir }}"

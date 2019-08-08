@@ -1,0 +1,17 @@
+---
+# - name: first connexion to jenkins
+#   uri:
+#     url: http://192.168.43.166:8080
+#     method: POST
+#     src: /var/lib/jenkins/secrets/initialAdminPassword
+#     remote_src: yes
+#   run_once: true
+
+- name: "add group {{ sys_group }} to {{ app_name}} home"
+  file:
+    path: "{{ item }}"
+    owner: "{{ app_name }}"
+    group: "{{ sys_group }}"
+    recurse: yes
+    mode: "0750"
+  loop: "{{ jenkins_dir }}"

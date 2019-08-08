@@ -1,9 +1,4 @@
 ---
-- name: stop ntp
-  service:
-    name: ntpd
-    state: stopped
-
 - name: restart ntp
   service:
     name: ntpd

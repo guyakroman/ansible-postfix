@@ -1,0 +1,11 @@
+---
+jenkins_packages:
+  - wget
+  - jenkins
+
+jenkins_home: "/var/lib/jenkins"
+jenkins_log: "/var/log/jenkins"
+
+jenkins_dir:
+  - "{{ jenkins_home }}"
+  - "{{ jenkins_log }}"

@@ -1,6 +1,0 @@
----
-- name: deploy ssh key
-  authorized_key:
-    user: "{{ app_user }}"
-    state: present
-    key: "{{ lookup('file', '{{role_ssh_key|quote}}.pub') }}"
