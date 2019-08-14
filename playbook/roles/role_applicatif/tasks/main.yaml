@@ -1,0 +1,20 @@
+---
+- name: "create directory for {{ app_name }}"
+  import_tasks: create_directory.yaml
+  when: state in ['install']
+
+- name: "install {{ app_name }}"
+  import_tasks: install_binary.yaml
+  when: state in ['install']
+
+# - name: "create daemon {{ app_name }}"
+#   import_tasks: create_daemon.yaml
+#   when: state in ['install']
+# 
+# - name: enable service
+#   import_tasks: enable_service.yaml
+#   when: state in ['install']
+
+- name: "manage profile"
+  import_tasks: manage_profile.yaml
+  when: state in ['install']

@@ -1,38 +1,37 @@
 ---
 - name: check if binary file is already download
-  shell: "ls {{ role_system.repo}} | grep {{ binary_name | quote }}"
+  shell: "ls {{ sys_repo}} | grep {{ app_binary | quote }}"
   register: R_check_binary
   delegate_to: localhost
+  ignore_errors: true
 
 - name: download binary file
   get_url:
-    url: " {{ item.url }}"
-    dest: "{{ role_system.repo }}"
-    owner: "{{ role_system.user }}"
-    group: "{{ role_system.group }}"
+    url: " {{ app_url }}"
+    dest: "{{ sys_repo }}"
+    owner: "{{ sys_user }}"
+    group: "{{ sys_group }}"
   delegate_to: localhost
   when: R_check_binary.rc != 0
 
 - name: unarchive the binary tar file on target
   unarchive:
-    src: "{{ role_system.repo }}/{{ item.binary_name }}{{ item.binary_ext_file }}"
-    dest: "{{ role_system.bin }}"
-    owner: "{{ item.user }}"
-    group: "{{ role_system.group }}"
+    src: "{{ sys_repo }}/{{ app_binary }}{{ app_binary_extension }}"
+    dest: "{{ sys_app }}"
+    owner: "{{ app_user }}"
+    group: "{{ sys_group }}"
     copy: yes
-    creates: "{{ role_system.bin }}/{{ binary_name }}"
+    # creates: "{{ sys_app }}/{{ app_binary }}"
 
-- name: "create link for {{ item.name }}"
+- name: "create link for {{ app_name }}"
   file:
-    src: "{{ role_system.apps }}/{{item.binary_name}}"
-    dest: "{{ item.home }}"
-    owner: "{{ item.user }}"
-    group: "{{ role_system.group }}"
+    src: "{{ sys_app }}/{{ app_binary }}"
+    dest: "{{ app_home }}"
+    owner: "{{ app_user }}"
+    group: "{{ app_group }}"
     state: link
 
 # - name: install packages
 #   yum:
-#     name: " {{ packages }}"
+#     name: " {{ app_package }}"
 #     update_cache: yes
-#   vars:
-#     - "{{ packages }}"

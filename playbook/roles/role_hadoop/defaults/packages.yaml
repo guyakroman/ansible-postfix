@@ -13,3 +13,4 @@ packages:
   - jq
   - wget
   - maven
+  - ntop

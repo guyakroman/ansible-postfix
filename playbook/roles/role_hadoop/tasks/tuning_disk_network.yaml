@@ -3,6 +3,7 @@
   command: "tune2fs -m 0 /dev/{{ item }}"
   loop:
     - "{{ sda_disk }}"
+  ignore_errors: true
 
 - name: Enable jumbo frames on the Ethernet network by changing the MTU
   lineinfile:

@@ -1,16 +1,24 @@
 ---
   - block:
-    - name: create user {{ sys_user }}
-      include_role:
-        name: role_user
-      vars:
-        app_user: "{{ sys_user }}"
+  #   - name: "create user {{ sys_user }}"
+  #     include_role:
+  #       name: role_user
+  #     vars:
+  #       app_user: "{{ sys_user }}"
+  #       app_group: "{{ sys_group }}"
+  #       app_gid: "{{ sys_gid }}"
+
+    - name: create directory
+      import_tasks: create_directory.yaml
 
     - name: manage hosts
       import_tasks: manage_hosts.yaml
 
     - name: manage ssh
       import_tasks: manage_ssh.yaml
+
+    - name: java
+      import_tasks: install_java.yaml
 
     - name: packages
       import_tasks: install_packages.yaml

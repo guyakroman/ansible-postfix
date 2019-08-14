@@ -1,5 +1,5 @@
 ---
 - name: Generate SSH keys
-  shell: ssh-keygen -b 2048 -t rsa -f {{ role_ssh_key | quote }} -q -N ""
+  shell: ssh-keygen -b 2048 -t rsa -f {{ sys_ssh_key | quote }} -q -N ""
   args:
-    creates: "{{role_ssh_key}}"
+    creates: "{{sys_ssh_key}}"

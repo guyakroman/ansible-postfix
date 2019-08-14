@@ -1,13 +1,14 @@
 ---
-- name: "create group {{ item.group }}"
+- name: "create group {{ app_group }}"
   group:
-    name: "{{ item.group }}"
-    gid: "{{ item.gid }}"
+    name: "{{ app_group }}"
+    gid: "{{ app_gid }}"
+    local: yes
     state: present
 
-- name: "create user {{ item.user }}"
+- name: "create user {{ app_user }}"
   user:
-    name: "{{ item.user }}"
-    groups: "{{ item.group }},{{ sys_group }}"
-    append: yes
-    uid: "{{ item.uid }}"
+    name: "{{ app_user }}"
+    groups: "{{ sys_group }}"
+    # append: yes
+    uid: "{{ app_uid }}"

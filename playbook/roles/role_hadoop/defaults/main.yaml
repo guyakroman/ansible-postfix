@@ -35,3 +35,8 @@ packages:
   # - jq
   - wget
   - maven
+  - ntop
+
+hadoop_file:
+  - hadoop-env.sh
+  - hive-env.sh

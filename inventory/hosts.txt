@@ -1,6 +1,6 @@
 [all]
 jchadcen01
-jchadcen[11:20]
+jchadcen[11:30]
 
 [datanode]
 jchadcen[13:16]
@@ -14,8 +14,15 @@ jchadcen11
 [resourcemanager]
 jchadcen12
 
+[zookeeper]
+jchadcen[27:29]
+
 [edgenode]
 jchadcen19
 
 [jenkins]
 jchadcen01
+
+[hbase]
+jchadcen24
+jchadcen25

@@ -1,0 +1,4 @@
+---
+app_package:
+  - openldap-clients
+  - nss-pam-ldapd

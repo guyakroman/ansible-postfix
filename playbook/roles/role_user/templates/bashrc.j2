@@ -1,0 +1,15 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+export HISTSIZE=1000
+export HISTTIMEFORMAT="%d-%m-%Y %T "
+
+# User specific aliases and functions
+export ZK_HOSTS=jchadcen27.jalodata.fr:2181,jchadcen28.jalodata.fr:2181,jchadcen29.jalodata.fr:2181

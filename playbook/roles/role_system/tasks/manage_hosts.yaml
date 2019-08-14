@@ -1,6 +1,6 @@
 ---
 - name: update hosts on ansible server
-  template:
-    src: hosts.j2
+  copy:
+    src: files/hosts
     dest: /etc/hosts
-  delegate_to: localhost
+  # delegate_to: localhost

@@ -1,0 +1,22 @@
+export JAVA_HOME=/usr/java/latest
+
+export HADOOP_HOME=/opt/cluster/hadoop
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+
+export YARN_HOME=$HADOOP_HOME
+export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+
+export HIVE_HOME=/opt/cluster/hive
+
+export HBASE_HOME=/opt/cluster/hbase
+export PATH=$PATH:/usr/local/scala/bin
+
+export OOZIE_HOME=/opt/cluster/oozie
+#export OOZIE_URL=/opt/cluster/oozie
+export OOZIE_LOG=/var/log/oozie
+
+PATH=$OOZIE_HOME/bin:$HBASE_HOME/bin:$HIVE_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$JAVA_HOME/bin:$PATH
+export PATH

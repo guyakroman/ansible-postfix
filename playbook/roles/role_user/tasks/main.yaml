@@ -4,5 +4,9 @@
   when: state in ['install','create']
 
 - name:
+  import_tasks: configure_bashrc.yaml
+  when: state in ['install','create']
+
+- name:
   import_tasks: delete_user.yaml
   when: state in ['absent','delete']

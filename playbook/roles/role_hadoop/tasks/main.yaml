@@ -15,3 +15,7 @@
 - name: Deploy tuning disk and network
   import_tasks: tuning_disk_network.yaml
   when: state in ['tuning']
+
+- name: copy hadoop env file
+  import_tasks: deploy_file.yaml
+  when: state in ['tuning']

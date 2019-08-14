@@ -1,0 +1,6 @@
+---
+- name: "enable {{ app_name }}"
+  systemd:
+    name: "{{ app_name }}"
+    enabled: yes
+    state: started

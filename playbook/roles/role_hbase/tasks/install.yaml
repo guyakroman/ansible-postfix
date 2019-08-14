@@ -1,0 +1,4 @@
+---
+- name: "install {{ app_name }}"
+  yum:
+    name: "{{ app_package }}"

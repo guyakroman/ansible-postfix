@@ -1,0 +1,4 @@
+---
+app_dir:
+  - /data/hive/scratch
+  - /data/hive

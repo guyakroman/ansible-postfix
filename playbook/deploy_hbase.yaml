@@ -1,0 +1,20 @@
+---
+- name: deploy hbase cluster
+  hosts: hbase
+  gather_facts: no
+  become: true
+  vars:
+    app_name: hbase
+    app_user: "{{ app_name }}"
+    app_group: "hadoop"
+    app_gid: "2001"
+    app_uid: "5002"
+    app_url: http://apache.crihan.fr/dist/hbase/2.1.5/hbase-2.1.5-bin.tar.gz
+    app_binary: "hbase-2.1.5"
+    app_binary_extension: "-bin.tar.gz"
+  roles:
+    - { role: role_system, state: install }
+    - { role: role_user, state: install }
+    - { role: role_applicatif, state: install }
+    - { role: role_manage_ssh, app_user: jcadmin }
+    - { role: role_hadoop, state: tuning }

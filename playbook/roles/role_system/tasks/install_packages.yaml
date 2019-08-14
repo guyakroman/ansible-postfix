@@ -11,5 +11,7 @@
     dest: "/etc/ntp.conf"
   notify: restart ntp
 
+
+
 # - name: force synchronisation ntp
 #   command: ntpdate fr.pool.ntp.org

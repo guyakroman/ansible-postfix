@@ -1,0 +1,6 @@
+---
+- name: "copy file {{ item }}"
+  copy:
+    src: "{{ item }}"
+    dest: "{{ sys_profile}}/{{ item }}"
+  loop: "{{ hadoop_file }}"

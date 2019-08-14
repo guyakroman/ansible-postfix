@@ -8,6 +8,13 @@
   template:
     src: sysctl.conf.j2
     dest: "{{ sysctl_file }}"
+    
+- name: make change effective
+  command: sysctl -p
+
+- name: check that change are ok
+  shell: grep -i HugePages_Total /proc/meminfo
+  register: R_checkchange
 
 # - name: Change system wide open file limit
 #   lineinfile:
@@ -28,10 +35,3 @@
 #     line: vm.nr_hugepages = 0
 
 # - name: shared memory segment size and the total shared segment
-
-- name: make change effective
-  command: sysctl -p
-
-- name: check that change are ok
-  shell: grep -i HugePages_Total /proc/meminfo
-  register: R_checkchange

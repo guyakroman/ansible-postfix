@@ -1,11 +1,11 @@
 ---
-- name: "deploy {{ item.name }} daemon"
+- name: "deploy {{ app_name }} daemon"
   template:
-    src: " {{ item.name }}_daemon.sh.j2"
-    dest: "{{ system_initd }}/{{ item.name }}"
+    src: " {{ app_name }}_daemon.sh.j2"
+    dest: "{{ system_initd }}/{{ app_name }}"
     mode: "0755"
 
-- name: "enable service {{ item.name }} "
+- name: "enable service {{ app_name }} "
   systemd:
-    name: " {{ item.name }} "
+    name: " {{ app_name }} "
     enabled: yes

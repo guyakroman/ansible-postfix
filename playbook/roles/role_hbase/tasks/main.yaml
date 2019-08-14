@@ -1,0 +1,12 @@
+---
+- name: "install {{ app_name }}"
+  import_tasks: install.yaml
+  when: state in ['install']
+
+- name: enable service
+  import_tasks: enable_service.yaml
+  when: state in ['install']
+
+- name: "configure {{ app_name}}"
+  import_tasks: configure.yaml
+  when: state in ['install']

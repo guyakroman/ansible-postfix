@@ -1,5 +1,0 @@
----
-app_data: "{{ sys_data }}/{{ app_name }}"
-app_var: "{{ sys_var }}/{{ app_name }}"
-app_home: "{{ sys_bin }}/{{ app_name }}"
-app_profile: "{{ sys_profile }}/{{ app_name }}.sh"

@@ -1,0 +1,46 @@
+#!/bin/bash
+#/etc/init.d/{{ app_name }}
+DAEMON_PATH={{ app_bin }}
+DAEMON_NAME={{ app_name }}
+# Check that networking is up.
+#[ ${NETWORKING} = "no" ] && exit 0
+
+PATH=$PATH:$DAEMON_PATH
+
+# See how we were called.
+case "$1" in
+  start)
+        # Start daemon.
+        pid=`ps ax | grep -i 'org.apache.{{ app_name }}' | grep -v grep | awk '{print $1}'`
+        if [ -n "$pid" ]
+          then
+            echo "{{ app_name }} is already running";
+        else
+          echo "Starting $DAEMON_NAME";
+          $DAEMON_PATH/kafka-server-start.sh {{ app_conf }}/server.properties
+        fi
+        ;;
+  stop)
+        echo "Shutting down $DAEMON_NAME";
+        $DAEMON_PATH/kafka-server-stop.sh
+        ;;
+  restart)
+        $0 stop
+        sleep 2
+        $0 start
+        ;;
+  status)
+        pid=`ps ax | grep -i 'org.apache.{{ app_name }}' | grep -v grep | awk '{print $1}'`
+        if [ -n "$pid" ]
+          then
+          echo "{{ app_name }} is Running as PID: $pid"
+        else
+          echo "{{ app_name }} is not Running"
+        fi
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart|status}"
+        exit 1
+esac
+
+exit 0

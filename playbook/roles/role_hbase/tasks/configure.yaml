@@ -1,0 +1,9 @@
+---
+- name: "add group {{ sys_group }} to {{ sys_user }} home"
+  file:
+    path: "{{ item }}"
+    owner: "{{ app_name }}"
+    group: "{{ sys_group }}"
+    recurse: yes
+    mode: "0750"
+  loop: "{{ jenkins_dir }}"
