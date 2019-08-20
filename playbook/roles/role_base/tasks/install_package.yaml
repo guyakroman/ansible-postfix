@@ -1,0 +1,9 @@
+---
+- name: install system packages
+  yum:
+    name: "{{ sys_package }}"
+    update_cache: yes
+  ignore_errors: yes
+
+- name: install java
+  import_tasks: install_java.yaml

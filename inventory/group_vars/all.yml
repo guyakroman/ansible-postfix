@@ -11,7 +11,8 @@ sys_mode: "0774"
 sys_app: "/opt/cluster"
 sys_repo: "/home/{{ sys_user }}/binaire"
 sys_ssh_key: "/home/{{ sys_user }}/.ssh/id_rsa.pub"
-
+sysctl_dir: /etc/sysctl.d
+sys_limits_dir: /etc/security/limits.d
 sys_dir:
   - "{{ sys_log }}"
   - "{{ sys_data }}"

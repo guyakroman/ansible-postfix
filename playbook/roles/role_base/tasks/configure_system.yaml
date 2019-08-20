@@ -1,0 +1,26 @@
+---
+- name: "create user {{ sys_user }}"
+  include_role:
+    name: role_manage_user
+  vars:
+    app_user: "{{ sys_user }}"
+    app_gid: "{{ sys_gid }}"
+    app_group: "{{ sys_group }}"
+
+- name: "deploy ssh key for user {{ sys_user }}"
+  include_role:
+    name: role_manage_ssh
+  vars:
+    ssh_key: "{{ sys_user_sshkey}}"
+
+- name: configure ntp
+  template:
+    src: "ntp.conf.j2"
+    dest: "/etc/ntp.conf"
+  notify: restart ntp
+
+- name: update hosts on ansible server
+  copy:
+    src: files/hosts
+    dest: /etc/hosts
+  # delegate_to: localhost

@@ -1,0 +1,15 @@
+---
+- name: "configure elastic"
+  template:
+    src: "elasticsearch.yaml.j2"
+    dest: "{{ app_home }}/config/elasticsearch.yaml"
+
+- name: "configure limits for {{ app_name }}"
+  template:
+    src: "elasticsearch-limits.yaml.j2"
+    dest: "{{ sys_limits_dir }}/02_elasticsearch.conf"
+
+- name: "configure sysctl for {{ app_name }}"
+  template:
+    src: "elasticsearch-sysctl.yaml.j2"
+    dest: "{{ sys_limits_dir }}/02_elasticsearch.conf"

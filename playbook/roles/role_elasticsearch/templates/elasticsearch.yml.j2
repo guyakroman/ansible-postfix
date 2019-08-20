@@ -1,0 +1,60 @@
+---
+role_elk_cluster_name:
+# ------------------------------------ Node ------------------------------------
+node:
+  name: {{ hostvars['elastic'].inventory_hostname }}-{{ role_elk_node_function }}
+role_elk_true: true
+role_elk_false: false
+
+http_port: 9200
+
+
+transport.tcp_port: 9300
+
+
+http:
+  port: {{ http_port }}
+  max_content_length: 100mb
+  compression: {{role_elk_true}}
+  compression_level: 9
+
+transport.tcp:
+  port: 9300
+  compress: {{role_elk_true}}
+
+# --------------------------------- Discovery ----------------------------------
+#discovery.seed_hosts: ["jchadcen50","jchadcen51", "jchadcen52"]
+# discovery.zen.minimum_master_nodes: 2
+discovery.zen:
+  minimum_master_nodes: 2
+  ping_timeout: 15s
+
+{% for server in groups.elastic %}
+{{ hostvars[elastic].ansible_default_ipv4.address }}:{{ transport_port}},
+{% endfor %}
+
+
+
+  ping.unicast.hosts: ["{% for server in groups.elastic %}
+  {{ hostvars[elastic].ansible_default_ipv4.address }}:{{ transport_tcp_port}},
+  {% endfor %}]
+
+# Bootstrap the cluster using an initial set of master-eligible nodes:
+#
+cluster.initial_master_nodes: [{{hostvars[elastic].inventory_hostname}}-master", "jchadcen51-master_data"]
+#
+# For more information, consult the discovery and cluster formation module documentation.
+#
+
+# ---------------------------------- Gateway -----------------------------------
+#
+# Block initial recovery after a full cluster restart until N nodes are started:
+#
+#gateway.recover_after_nodes: 3
+#
+# For more information, consult the gateway module documentation.
+#
+# ---------------------------------- Various -----------------------------------
+#
+# Require explicit names when deleting indices:
+#action.destructive_requires_name: true

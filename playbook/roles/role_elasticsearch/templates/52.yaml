@@ -1,0 +1,66 @@
+# configuration elastisearch
+cluster:
+  name: elastic_clsuter01
+
+# ------------------------------------ Node ------------------------------------
+node:
+  name: jchadcen52-datar
+  master: false
+  data: true
+
+#node.attr.rack: r1
+
+
+# ----------------------------------- Paths ------------------------------------
+path:
+  data: /data/elastic
+  logs: /var/log/elastic
+
+# ----------------------------------- Memory -----------------------------------
+bootstrap:
+  memory_lock: true
+
+# ---------------------------------- Network -----------------------------------
+#
+# Set the bind address to a specific IP (IPv4 or IPv6):
+#
+network:
+  host: 192.168.43.52
+
+http:
+  port: 9200
+  max_content_length: 100mb
+  compression: true
+  compression_level: 9
+
+transport.tcp:
+  port: 9300
+  compress: true
+
+# --------------------------------- Discovery ----------------------------------
+#discovery.seed_hosts: ["jchadcen50","jchadcen51", "jchadcen52"]
+# discovery.zen.minimum_master_nodes: 2
+discovery.zen:
+  minimum_master_nodes: 2
+  ping_timeout: 15s
+  ping.unicast.hosts: ["192.168.43.50:9300", "192.168.43.51:9300", "192.168.43.52:9300"]
+
+# Bootstrap the cluster using an initial set of master-eligible nodes:
+#
+cluster.initial_master_nodes: ["jchadcen50-master", "jchadcen51-master_data"]
+#
+# For more information, consult the discovery and cluster formation module documentation.
+#
+
+# ---------------------------------- Gateway -----------------------------------
+#
+# Block initial recovery after a full cluster restart until N nodes are started:
+#
+#gateway.recover_after_nodes: 3
+#
+# For more information, consult the gateway module documentation.
+#
+# ---------------------------------- Various -----------------------------------
+#
+# Require explicit names when deleting indices:
+#action.destructive_requires_name: true

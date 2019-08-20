@@ -1,15 +1,16 @@
 ---
 sys_packages:
-  # - dict
-  # - jq
-  # - "wget"
-  # - maven
-  #- "epel-release"
-  - "java"
+  - "wget"
+  - "epel-release"
   - "unzip"
   - "vim"
   - "net-tools"
   - "nc"
   - "ntp"
   - "psmisc"
-  - "telnet"
+  - "lsof"
+  # - "telnet"
+  # - maven
+  # - "java"
+  # - dict
+  # - jq

@@ -7,7 +7,7 @@
 
 - name: download binary file
   get_url:
-    url: " {{ app_url }}"
+    url: "{{ app_url }}"
     dest: "{{ sys_repo }}"
     owner: "{{ sys_user }}"
     group: "{{ sys_group }}"

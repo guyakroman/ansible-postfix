@@ -1,0 +1,21 @@
+---
+- name: deploy elasticsearch cluster
+  hosts: elastic
+  gather_facts: yes
+  become: true
+  vars:
+    app_name: "elastic"
+    app_user: "{{ app_name }}"
+    app_group: "elastic"
+    app_gid: "2003"
+    app_uid: "5003"
+    app_log: "/var/log/{{ app_name }}"
+    app_url: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.4.2-linux-x86_64.tar.gz
+    app_binary: "elasticsearch-6.4.2"
+    app_binary_extension: "-linux-x86_64.tar.gz"
+  roles:
+    - { role: role_system, state: install }
+    - { role: role_user, state: install }
+    - { role: role_applicatif, state: install }
+    - { role: role_manage_ssh, app_user: jcadmin }
+    - { role: role_hadoop, state: tuning }

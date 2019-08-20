@@ -1,0 +1,13 @@
+---
+role_elk_cluster_name: "qfssfqd"
+role_elk_true: true
+role_elk_false: false
+role_elk_node_function: master
+role_elk_http_port: 9200
+role_elk_max_content_length: 100mb
+role_elk_compression_level: 9
+role_elk_transport.tcp.port: 9300
+role_elk_discovery.zen.minimum_master_nodes: 2
+role_elk_discovery.zen.ping_timeout: 15s
+role_elk_discovery.zen.ping.unicast.hosts: [{% for server in groups.elastic %} "{{ hostvars[elastic].ansible_ifcfg-en0sp3.ipv4.address }}:{{ role_elk_transport.tcp.port }}", {% endfor %}"]
+role_elk_cluster_initial_master_nodes: ["{{ hostvars[elastic].inventory_hostname}}-{{role_elk_node_function}}","{{hostvars[elastic].inventory_hostname}}-{{role_elk_node_function}}"]

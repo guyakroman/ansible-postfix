@@ -1,7 +1,7 @@
 ---
 - name: "deploy {{ app_name }} daemon"
   template:
-    src: " {{ app_name }}_daemon.sh.j2"
+    src: "{{ app_name }}_daemon.sh.j2"
     dest: "{{ system_initd }}/{{ app_name }}"
     mode: "0755"
 
