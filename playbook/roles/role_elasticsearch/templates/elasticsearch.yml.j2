@@ -1,48 +1,59 @@
 ---
-role_elk_cluster_name:
+role_elastic_cluster_name:
 # ------------------------------------ Node ------------------------------------
 node:
-  name: {{ hostvars['elastic'].inventory_hostname }}-{{ role_elk_node_function }}
-role_elk_true: true
-role_elk_false: false
+  name: {{ hostvars['elastic'].inventory_hostname }}-{{ role_elastic_node_function }}
+  master: {% if role_elastic_node_function ~ "master" %}
+          {{ role_elastic_true }}
+          {% else %}
+          {{role_elastic_false}}
+          {% endif %}
+  data: {% if role_elastic_node_function ~ "data" }
+        {{ role_elastic_true }} }
+        {% else %}
+        {{ role_elastic_false }}
+        {% endif %}
 
-http_port: 9200
+# ----------------------------------- Paths ------------------------------------
+path:
+  data: {{ app_data }}
+  logs: {{ app_log }}
 
+# ----------------------------------- Memory -----------------------------------
+bootstrap:
+  memory_lock: {{ role_elastic_true }}
 
-transport.tcp_port: 9300
-
+# ---------------------------------- Network -----------------------------------
+network:
+  host: {{ hostvars[elastic].ansible_default_ipv4.address }}
 
 http:
-  port: {{ http_port }}
-  max_content_length: 100mb
-  compression: {{role_elk_true}}
-  compression_level: 9
+  port: {{ role_elastic_http_port }}
+  max_content_length: {{ role_elastic_http_max_content_length }}
+  compression: {{ role_elastic_true }}
+  compression_level: {{ role_elastic_http_compression_level }}
 
 transport.tcp:
-  port: 9300
-  compress: {{role_elk_true}}
+  port: {{ role_elastic_transport_tcp_port }}
+  compress: {{ role_elastic_true }}
 
 # --------------------------------- Discovery ----------------------------------
 #discovery.seed_hosts: ["jchadcen50","jchadcen51", "jchadcen52"]
 # discovery.zen.minimum_master_nodes: 2
 discovery.zen:
-  minimum_master_nodes: 2
-  ping_timeout: 15s
-
-{% for server in groups.elastic %}
-{{ hostvars[elastic].ansible_default_ipv4.address }}:{{ transport_port}},
-{% endfor %}
-
-
-
-  ping.unicast.hosts: ["{% for server in groups.elastic %}
-  {{ hostvars[elastic].ansible_default_ipv4.address }}:{{ transport_tcp_port}},
-  {% endfor %}]
+  minimum_master_nodes: {{ role_elastic_discovery_zen_minimum_master_nodes }}
+  ping_timeout: {{ role_elastic_discovery_zen_ping_timeout }}
+  ping.unicast.hosts: [ {% for server in groups.elastic %}
+                      "{{ hostvars[elastic].ansible_default_ipv4.address }}:{{ role_elastic_transport_tcp_port }}",
+                      {% endfor %}]
 
 # Bootstrap the cluster using an initial set of master-eligible nodes:
-#
-cluster.initial_master_nodes: [{{hostvars[elastic].inventory_hostname}}-master", "jchadcen51-master_data"]
-#
+cluster.initial_master_nodes: [{% for server in groups.elastic %}
+                                {% if role_elastic_node_function ~ "master" %}
+                                  {{ hostvars[elastic].inventory_hostname}}-{{ role_elastic_node_function }}",
+                                {% endif %}
+                              {% endfor %}]
+
 # For more information, consult the discovery and cluster formation module documentation.
 #
 
@@ -50,11 +61,11 @@ cluster.initial_master_nodes: [{{hostvars[elastic].inventory_hostname}}-master",
 #
 # Block initial recovery after a full cluster restart until N nodes are started:
 #
-#gateway.recover_after_nodes: 3
+#gateway.recover_after_nodes: {{ role_elastic_gateway_recover_after_nodes }}
 #
 # For more information, consult the gateway module documentation.
 #
 # ---------------------------------- Various -----------------------------------
 #
 # Require explicit names when deleting indices:
-#action.destructive_requires_name: true
+#action.destructive_requires_name: {{ role_elastic_true }}

@@ -42,6 +42,12 @@ jchadcen19
 [zookeeper]
 jchadcen[30:32]
 
+[elastic]
+jchadcen[50:32]
+
+[kibana]
+jchadcen53
+
 [kafka]
 jchadcen[21:23]
 

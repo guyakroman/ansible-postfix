@@ -17,10 +17,10 @@
     - name: manage ssh
       import_tasks: manage_ssh.yaml
 
-    - name: java
+    - name: install java
       import_tasks: install_java.yaml
 
-    - name: packages
+    - name: install packages
       import_tasks: install_packages.yaml
 
     - name: disable service

@@ -6,7 +6,7 @@
   vars:
     app_name: "elastic"
     app_user: "{{ app_name }}"
-    app_group: "elastic"
+    app_group: "{{ app_name }}"
     app_gid: "2003"
     app_uid: "5003"
     app_log: "/var/log/{{ app_name }}"
@@ -19,3 +19,4 @@
     - { role: role_applicatif, state: install }
     - { role: role_manage_ssh, app_user: jcadmin }
     - { role: role_hadoop, state: tuning }
+    - { role: role_elastic, state: install }

@@ -1,8 +1,9 @@
 ---
-- name: "configure elastic"
+- name: "deploy elasticserach.yml "
   template:
     src: "elasticsearch.yaml.j2"
-    dest: "{{ app_home }}/config/elasticsearch.yaml"
+    dest: "{{ app_home }}/config/elasticsearch.yml"
+  notify: restart elastic
 
 - name: "configure limits for {{ app_name }}"
   template:
@@ -13,3 +14,4 @@
   template:
     src: "elasticsearch-sysctl.yaml.j2"
     dest: "{{ sys_limits_dir }}/02_elasticsearch.conf"
+  notify: exec system

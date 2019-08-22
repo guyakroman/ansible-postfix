@@ -4,19 +4,15 @@
   gather_facts: no
   become: true
   vars:
-    - kafka:
-      - {
-        name: kafka,
-        user: "{{ name }}",
-        group: "kafka",
-        gid: "5001",
-        uid: "5001",
-        url: http://apache.crihan.fr/dist/kafka/2.3.0/kafka_2.11-2.3.0.tgz,
-        binary: "kafka_2.11-2.3.0",
-        binary_extension: ".tgz"
-        }
+    app_url: http://apache.crihan.fr/dist/kafka/2.3.0/kafka_2.11-2.3.0.tgz
+    binary_name: "kafka_2.11-2.3.0"
+    binary_extention_file: ".tgz"
+    app_name: kafka
+    app_user: "{{ app_name }}"
+    app_group: "kafka"
+    app_gid: "5001"
+    app_uid: "5001"
   roles:
     - { role: role_system, state: install }
     - { role: role_user, state: create }
     - { role: role_applicatif, state: install }
-    - { role: role_manage_ssh, app_user: jcadmin }

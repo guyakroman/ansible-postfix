@@ -1,0 +1,10 @@
+---
+- name: restart elastic
+  command: "{{ app_home }}/bin/elasticsearch -d -p pid"
+  register: R_restartElastic
+  changed_when: R_restartElastic.rc != 0
+
+- name: exec system
+  command: "sysctl -p"
+  register: R_execSystem
+  changed_when: R_execSystem.rc != 0
