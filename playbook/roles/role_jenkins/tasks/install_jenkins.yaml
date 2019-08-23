@@ -7,12 +7,9 @@
     baseurl: "http://pkg.jenkins.io/redhat-stable"
     gpgcheck: yes
     gpgkey: https://jenkins-ci.org/redhat/jenkins-ci.org.key
-
-# - name: "Add key repository for {{ app_name }}"
-#   rpm_key:
-#     state: present
-#     key: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+  when: ansible_distribution == centos
 
 - name: "install {{ app_name }}"
   yum:
     name: "{{ jenkins_packages }}"
+  when: ansible_distribution == centos

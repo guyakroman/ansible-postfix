@@ -4,6 +4,15 @@
     name: "{{ sys_packages }}"
     update_cache: yes
   ignore_errors: true
+  when: ansible_distribution == "Centos"
+
+- name: install packages
+  apt:
+    name: "{{ sys_packages }}"
+    update_cache: yes
+    valid_cache: 3600
+  ignore_errors: true
+  when: ansible_distribution == "Ubuntu"
 
 - name: configure ntp
   template:
