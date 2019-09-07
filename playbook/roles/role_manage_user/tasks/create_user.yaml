@@ -1,0 +1,21 @@
+---
+- name: "create group {{ app_group }}"
+  group:
+    name: "{{ app_group }}"
+    gid: "{{ app_gid }}"
+    system: true
+    local: true
+    state: present
+
+- name: "create user {{ app_user }}"
+  user:
+    name: ""
+    uid: "{{ app_uid }}"
+    home: "{{role_manage_user_home}}"
+    shell: "{{role_manage_user_shell}}"
+    system: true
+    group: "{{ app_group }}"
+    groups: "{{ app_groups}}"
+    generate_ssh_key: true
+    ssh_key_bits: 2048
+    ssh_key_file: "{{ role_manage_user_ssh_key_file}}"
