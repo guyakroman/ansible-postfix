@@ -9,7 +9,7 @@
 
 - name: "create user {{ app_user }}"
   user:
-    name: ""
+    name: "app_user"
     uid: "{{ app_uid }}"
     home: "{{role_manage_user_home}}"
     shell: "{{role_manage_user_shell}}"
