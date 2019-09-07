@@ -9,7 +9,11 @@
 
 - name: "create user {{ app_user }}"
   user:
+<<<<<<< HEAD
     name: "{{ app_user }}"
+=======
+    name: "app_user"
+>>>>>>> 5a9cf9c238d676bf7e261645e481a86c614391bf
     uid: "{{ app_uid }}"
     home: "{{role_manage_user_home}}"
     shell: "{{role_manage_user_shell}}"
