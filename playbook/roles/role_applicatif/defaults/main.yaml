@@ -1,0 +1,9 @@
+---
+app_data: "{{ sys_data }}/{{ app_name }}"
+app_log: "{{ sys_log }}/{{app_group}}/{{ app_name }}"
+app_home: "{{ sys_app }}/{{ app_name }}"
+app_bin: "{{ app_home }}/bin"
+app_profile: "{{ sys_profile }}/{{ app_name }}.sh"
+app_dir:
+  - "{{ app_data }}"
+  - "{{ app_log }}"

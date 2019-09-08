@@ -1,12 +1,12 @@
 ---
 - name: "create directory for {{ app_name }}"
   import_tasks: create_directory.yaml
-  when: state in ['install']
+  when: state in ['create']
 
 - name: "install {{ app_name }}"
   import_tasks: install_binary.yaml
-  when: state in ['install']
+  when: state in ['create']
 
 - name: "manage profile"
   import_tasks: manage_profile.yaml
-  when: state in ['install']
+  when: state in ['create']

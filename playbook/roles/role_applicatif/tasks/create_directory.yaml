@@ -3,8 +3,8 @@
   file:
     path: "{{ item }}"
     state: directory
-    group: "{{ sys_group }}"
-    mode: "0774"
+    group: "{{ app_group }}"
+    mode: "{{ sys_mode }}"
     recurse: yes
     owner: "{{ app_user }}"
   loop:

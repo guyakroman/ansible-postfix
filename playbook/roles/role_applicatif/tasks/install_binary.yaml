@@ -1,25 +1,25 @@
 ---
 - name: check if binary file is already download
-  shell: "ls {{ sys_repo}} | grep {{ app_binary | quote }}"
+  stat:
+    path: "{{ sys_repo }}/{{ app_binary }}{{ app_binary_extension }}"
   register: R_check_binary
   delegate_to: localhost
-  ignore_errors: true
 
 - name: download binary file
   get_url:
     url: "{{ app_url }}"
     dest: "{{ sys_repo }}"
     owner: "{{ sys_user }}"
-    group: "{{ sys_group }}"
+    group: "{{ app_group }}"
   delegate_to: localhost
-  when: R_check_binary.rc != 0
+  when: R_check_binary.stat.exists
 
 - name: unarchive the binary tar file on target
   unarchive:
     src: "{{ sys_repo }}/{{ app_binary }}{{ app_binary_extension }}"
     dest: "{{ sys_app }}"
     owner: "{{ app_user }}"
-    group: "{{ sys_group }}"
+    group: "{{ app_group }}"
     copy: yes
     # creates: "{{ sys_app }}/{{ app_binary }}"
 
