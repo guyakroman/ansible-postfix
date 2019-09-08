@@ -1,0 +1,24 @@
+---
+- name: deploy database postgres
+  hosts: db_postgres
+  gather_facts: no
+  become: true
+  vars:
+    db_name: "db_devops"
+    app_user: "postgres"
+    app_group: "posgres"
+    app_gid: "3001"
+    app_uid: "3001"
+  roles:
+    - role: "role_system"
+      vars:
+        state: create
+
+    - role: "role_user"
+      vars:
+        state: create
+
+    - role: role_manage_db
+      vars:
+        db_type: postgres
+        state: create
