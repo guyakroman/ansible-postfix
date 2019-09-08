@@ -1,9 +1,0 @@
----
-- name : "configure bashrc for user {{ app_user }}"
-  template:
-    src: "{{ bashrc_file }}.j2"
-    dest: "{{ bashrc_dir }}/.{{bashrc_file}}"
-
-- name : "source bashrc for user {{ app_user }}"
-  command: ". {{ bashrc_dir }}/.{{bashrc_file}}"
-  ignore_errors: true
