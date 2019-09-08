@@ -3,7 +3,7 @@
   import_tasks: create_user.yaml
   when: state in ['create']
 
-- name: "deploy ssh key for user {{ app_user}}"
+- name: "deploy ssh key for user {{ app_user }}"
   import_tasks: deploy_sshkey.yaml
   when: state in ['create']
 

@@ -1,4 +1,4 @@
 ---
 role_manage_user_shell: "/bin/bash"
-role_manage_user_home: "/home/{{app_name}}"
+role_manage_user_home: "/home/{{app_user}}"
 role_manage_user_ssh_key_file: ".ssh/id_rsa"
