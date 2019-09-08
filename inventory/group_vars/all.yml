@@ -1,35 +1,14 @@
 ---
 sys_user: "jcadmin"
-sys_group: "hadoop"
-sys_uid: "1001"
-sys_gid: "2001"
-sys_log: "/var/log/hadoop"
+sys_repo: "/home/{{ sys_user }}/repo"
+sys_app: "/opt/cluster"
+sys_log: "/var/log"
 sys_data: "/data"
 sys_profile: "/etc/profile.d"
 sys_conf: "/etc"
-sys_mode: "0774"
-sys_app: "/opt/cluster"
-sys_repo: "/home/{{ sys_user }}/binaire"
-sys_ssh_key: "/home/{{ sys_user }}/.ssh/id_rsa.pub"
+sys_mode: "0770"
 sysctl_dir: /etc/sysctl.d
 sys_limits_dir: /etc/security/limits.d
-sys_dir:
-  - "{{ sys_log }}"
-  - "{{ sys_data }}"
-  - "{{ sys_app }}"
-  - "{{ sys_repo }}"
-
-app_data: "{{ sys_data }}/{{ app_name }}"
-app_log: "{{ sys_log }}/{{ app_name }}"
-app_home: "{{ sys_app }}/{{ app_name }}"
-app_bin: "{{ app_home }}/bin"
-app_profile: "{{ sys_profile }}/{{ app_name }}.sh"
-app_dir:
-  - "{{ app_data }}"
-  - "{{ app_log }}"
-
 domain_name: jalodata.fr
-java_bin: "jdk-8u191-linux-x64.rpm"
-
 bashrc_file: bashrc
 bashrc_dir: "/home/{{app_user}}"
