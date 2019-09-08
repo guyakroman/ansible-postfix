@@ -1,0 +1,6 @@
+---
+- name: Copy ssh key to hosts
+  authorized_key:
+    user: "{{ sys_user }}"
+    state: present
+    key: "{{ lookup('file', '/home/{{ sys_user }}/.ssh/id_rsa.pub') }}"

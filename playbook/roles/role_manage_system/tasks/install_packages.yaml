@@ -1,0 +1,16 @@
+---
+- name: install packages
+  yum:
+    name: "{{ sys_packages }}"
+    update_cache: yes
+  ignore_errors: true
+  when: ansible_distribution == "CentOS"
+
+- name: configure ntp
+  template:
+    src: "ntp.conf.j2"
+    dest: "/etc/ntp.conf"
+  notify: restart ntp
+
+# - name: force synchronisation ntp
+#   command: ntpdate fr.pool.ntp.org

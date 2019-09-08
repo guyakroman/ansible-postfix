@@ -1,0 +1,6 @@
+---
+- name: update hosts on ansible server
+  copy:
+    src: files/hosts
+    dest: /etc/hosts
+  # delegate_to: localhost

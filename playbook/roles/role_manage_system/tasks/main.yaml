@@ -1,0 +1,23 @@
+---
+- name: "include role manage user"
+  include_role:
+    name: role_manage_user
+    vars_from: "../vars"
+  when: state in ['create']
+
+- block:
+  - name: create user system directory
+    import_tasks: create_directory.yaml
+
+  - name: install java
+    import_tasks: install_java.yaml
+
+  - name: install packages
+    import_tasks: install_packages.yaml
+
+  - name: enable service
+    import_tasks: enable_service.yaml
+
+  - name: disable service
+    import_tasks: disable_service.yaml
+  when: state in ['create']
