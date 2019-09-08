@@ -1,0 +1,3 @@
+---
+role_postgres_packages:
+  - python-psycopg2

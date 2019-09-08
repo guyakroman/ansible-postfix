@@ -1,0 +1,9 @@
+---
+role_manage_db_postgres_owner: "posgres"
+role_manage_db_postgres_port: "5432"
+role_manage_db_postgres_user: "postgres"
+role_manage_db_postgres_encoding: "UTF-8"
+role_manage_db_postgres_language: "fr-FR"
+role_manage_db_postgres_lc_ctype: "{{ role_manage_db_postgres_language }}.{{role_manage_db_postgres_encoding}}"
+role_manage_db_postgres_lc_locale: "{{ role_manage_db_postgres_lc_ctype }}"
+role_manage_db_postgres_password: "postgres"

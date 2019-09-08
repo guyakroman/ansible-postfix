@@ -1,0 +1,17 @@
+---
+- name: "install packages for postgres"
+  yum:
+    name: "{{ role_postgres_packages}}"
+    update_cache: true
+
+- name: " Create a database with name {{ db_name }} and specific encoding and locale # settings."
+  postgresql_db:
+    name: "{{ role_manage_db_postgres_name }}"
+    encoding: "{{ role_manage_db_postgres_lc_ctype }}"
+    lc_collate: "{{ role_manage_db_postgres_lc_collate }}"
+    lc_ctype: "{{ role_manage_db_postgres_lc_ctype }}"
+    template: template0
+    owner: "{{ role_manage_db_postgres_owner }}"
+    login_host: "{{ ansible_fqdn }}"
+    login_password: "{{ role_manage_db_postgres_password }}"
+    login_user: "{{ role_manage_db_postgres_user }}"
