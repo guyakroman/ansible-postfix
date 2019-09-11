@@ -3,14 +3,14 @@
   import_tasks: create_user.yaml
   when: state in ['create']
 
-- name: "deploy ssh key for user {{ app_user }}"
-  import_tasks: deploy_sshkey.yaml
-  when: state in ['create']
-
-- name:
-  import_tasks: configure_bashrc.yaml
-  when: state in ['create']
-
-- name: "delete user "
-  import_tasks: delete_user.yaml
-  when: state in ['delete']
+# - name: "deploy ssh key for user {{ item }}"
+#   import_tasks: deploy_sshkey.yaml
+#   when: state in ['create']
+#
+# - name:
+#   import_tasks: configure_bashrc.yaml
+#   when: state in ['create']
+#
+# - name: "delete user "
+#   import_tasks: delete_user.yaml
+#   when: state in ['delete']

@@ -1,12 +1,12 @@
 ---
-# - name: "delete group {{ app_group }}"
+# - name: "delete group {{ item.name }}"
 #   group:
-#     name: "{{ app_group }}"
-#     gid: "{{ app_gid }}"
+#     name: "{{ item.name }}"
+#     gid: "{{ item.gid }}"
 #     state: absent
 
-- name: "delete user {{ app_user }}"
+- name: "delete user {{ item.user }}"
   user:
-    name: ""
-    uid: "{{ app_uid }}"
+    name: "{{ item.name }}"
+    uid: "{{ item.uid }}"
     state: absent

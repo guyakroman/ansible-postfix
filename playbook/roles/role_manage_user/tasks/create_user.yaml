@@ -1,20 +1,45 @@
 ---
-- name: "create group {{ app_group }}"
+- name: check variable definition
+  assert:
+    that: "{{ item }} is defined"
+  loop:
+    - "{{ group_list }}"
+    - "{{ user_list }}"
+
+- name: check that user exist
+  shell: "grep {{ item.name }} /etc/passwd"
+  loop: "{{ user_list }}"
+  register: R_CheckUser
+  change_when: R_CheckUser.rc != 0
+  failed_when: False
+
+- name: check that group exist
+  shell: "grep {{ item.name }} /etc/passwd"
+  loop: "{{ group_list }}"
+  register: R_CheckGroup
+  change_when: R_CheckGroup.rc != 0
+  failed_when: False
+
+- name: "create group {{ item.name }}"
   group:
-    name: "{{ app_group }}"
-    gid: "{{ app_gid }}"
+    name: "{{ item.name }}"
+    gid: "{{ item.gid }}"
     system: true
     local: true
-    state: present
+  loop: "{{ group_list }}"
+  when: R_CheckGroup.changed
 
-- name: "create user {{ app_user }}"
+- name: "create user {{ item.name }}"
   user:
-    name: "{{ app_user }}"
-    uid: "{{ app_uid }}"
+    name: "{{ item.name }}"
+    uid: "{{ item.uid }}"
+    group: "{{ item.group }}"
+    groups: "{{ item.groups }}"
+    generate_ssh_key: "{{ item.ssh_key }}"
     home: "{{ role_manage_user_home }}"
     shell: "{{ role_manage_user_shell }}"
     system: true
-    groups: "{{ app_group }}"
-    generate_ssh_key: true
     ssh_key_bits: 2048
     ssh_key_file: "{{ role_manage_user_ssh_key_file }}"
+  loop: "{{ user_list }}"
+  when: R_CheckUser.changed
