@@ -1,6 +1,11 @@
 ---
-- name: Set authorized key taken from file
+- name: slurp the pubkey for passing to other servers as authorized_key
+  slurp:
+    src: "{{role_manage_user_home}}/{{role_manage_user_ssh_key_file}}.pub"
+  register: ssh_pubkey
+
+- name: "add authorized key to user {{ item.user }}"
   authorized_key:
-    user: "{{ app_user }}"
+    user: "{{ item.user }}"
     state: present
-    key: "{{ lookup('file', '{{role_manage_user_home}}/{{role_manage_user_ssh_key_file}}.pub') }}"
+    key: "{{ ssh_pubkey }}"

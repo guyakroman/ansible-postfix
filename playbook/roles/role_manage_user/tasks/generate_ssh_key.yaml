@@ -1,0 +1,6 @@
+---
+- name: Set authorized key taken from file
+  authorized_key:
+    user: "{{ item.user }}"
+    state: present
+    key: "{{ lookup('file', '{{role_manage_user_home}}/{{role_manage_user_ssh_key_file}}.pub') }}"

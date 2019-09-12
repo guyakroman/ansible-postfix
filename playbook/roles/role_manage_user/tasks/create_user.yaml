@@ -3,24 +3,24 @@
   assert:
     that: "{{ item }} is defined"
   loop:
-    - "{{ group_list }}"
-    - "{{ user_list }}"
+    - group_list
+    - user_list
 
 - name: check that user exist
-  shell: "grep {{ item.name }} /etc/passwd"
+  shell: "grep {{ item.user }} /etc/passwd"
   loop: "{{ user_list }}"
   register: R_CheckUser
-  change_when: R_CheckUser.rc != 0
+  changed_when: R_CheckUser.rc != 0
   failed_when: False
 
 - name: check that group exist
   shell: "grep {{ item.name }} /etc/passwd"
   loop: "{{ group_list }}"
   register: R_CheckGroup
-  change_when: R_CheckGroup.rc != 0
+  changed_when: R_CheckGroup.rc != 0
   failed_when: False
 
-- name: "create group {{ item.name }}"
+- name: "create group "
   group:
     name: "{{ item.name }}"
     gid: "{{ item.gid }}"
@@ -29,9 +29,9 @@
   loop: "{{ group_list }}"
   when: R_CheckGroup.changed
 
-- name: "create user {{ item.name }}"
+- name: "create user"
   user:
-    name: "{{ item.name }}"
+    name: "{{ item.user }}"
     uid: "{{ item.uid }}"
     group: "{{ item.group }}"
     groups: "{{ item.groups }}"

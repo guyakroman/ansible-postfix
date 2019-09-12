@@ -11,4 +11,4 @@ sysctl_dir: /etc/sysctl.d
 sys_limits_dir: /etc/security/limits.d
 domain_name: jalodata.fr
 bashrc_file: bashrc
-bashrc_dir: "/home/{{app_user}}"
+bashrc_dir: "/home/{{item.user}}"

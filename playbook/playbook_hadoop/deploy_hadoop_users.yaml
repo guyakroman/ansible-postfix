@@ -1,0 +1,57 @@
+---
+- name: deploy hadoop cluster users
+  hosts: datanode
+  gather_facts: no
+  become: true
+  vars:
+    group_list:
+      - {
+        name: "hadoop",
+        gid: "5000"
+        }
+      - {
+        name: "hdfs",
+        gid: "1008"
+        }
+      - {
+        name: "yarn",
+        gid: "1009"
+        }
+      - {
+        name: "mapred",
+        gid: "1010"
+        }
+    user_list:
+      - {
+        user: "hdfs",
+        uid: "1008",
+        group: "hdfs",
+        groups: "hadoop",
+        ssh_key: "yes"
+        }
+      - {
+        user: "yarn",
+        uid: "1009",
+        group: "yarn",
+        groups: "hadoop",
+        ssh_key: yes
+       }
+      - {
+        user: "mapred",
+        uid: "1010",
+        group: "mapred",
+        groups: "hadoop",
+        ssh_key: "yes"
+       }
+
+  tasks:
+    - name: "create sytem group and users"
+      include_role:
+        name: role_manage_user
+      vars:
+        state: create
+
+    - name: copy the hosts files on machine
+      include_role:
+        name: role_manage_system
+        tasks_from: manage_hosts.yaml

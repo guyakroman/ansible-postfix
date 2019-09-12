@@ -7,6 +7,6 @@
 
 - name: "delete user {{ item.user }}"
   user:
-    name: "{{ item.name }}"
+    name: "{{ item.user }}"
     uid: "{{ item.uid }}"
     state: absent

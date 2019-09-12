@@ -1,10 +1,6 @@
 ---
-- name : "configure bashrc for user {{ item }}"
+- name : "configure bashrc for user "
   template:
     src: "{{ bashrc_file }}.j2"
     dest: "{{ bashrc_dir }}/.{{bashrc_file}}"
-
-- name : "source bashrc for user {{ item }}"
-  become_user: "{{ item.name }}"
-  command: "source {{ bashrc_dir }}/.{{bashrc_file}}"
-  ignore_errors: true
+  loop: "{{ user_list }}"

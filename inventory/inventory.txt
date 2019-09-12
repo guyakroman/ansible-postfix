@@ -15,15 +15,16 @@ jchadcen22
 jchadcen23
 jchadcen24
 jchadcen25
+jchadcen26
+jchadcen27
+jchadcen28
+jchadcen29
 jchadcen30
 jchadcen31
 jchadcen32
 
 [datanode]
-jchadcen13
-jchadcen14
-jchadcen15
-jchadcen16
+jchadcen[13:16]
 
 [admin]
 jchadcen01
@@ -40,7 +41,7 @@ jchadcen17
 jchadcen19
 
 [zookeeper]
-jchadcen[30:32]
+jchadcen[27:29]
 
 [elastic]
 jchadcen[50:32]
@@ -56,3 +57,6 @@ jchadcen[24:25]
 
 [jenkins]
 jchadcen01
+
+[test_playbook]
+jchadcen130
