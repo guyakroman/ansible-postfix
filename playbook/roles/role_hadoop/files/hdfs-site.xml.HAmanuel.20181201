@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+<!-- Emplacement du namenode -->
+<property>
+  <description>Nom du cluster</description>
+  <name>dfs.nameservices</name>
+  <value>jchadcluster01</value>
+</property>
+
+<!-- Emplacement du datanode -->
+<property>
+  <description>Emplacement des données</description>
+  <name>dfs.datanode.data.dir</name>
+  <value>file:///data/datanode</value>
+</property>
+
+<property>
+  <description>Emplacement des metadonnées</description>
+  <name>dfs.namenode.name.dir</name>
+  <value>file:///data/namenode</value>
+</property>
+
+<property>
+  <description>Membres du clusters NN</description>
+  <name>dfs.ha.namenodes.jchadcluster01</name>
+  <value>nn1,nn2</value>
+</property>
+
+<property>
+  <description>adresseIP:port NN1</description>
+  <name>dfs.namenode.rpc-address.jchadcluster01.nn1</name>
+  <value>jchadcen11.jalodata.fr:9000</value>
+</property>
+
+<property>
+  <description>adresseIP:port NN2</description>
+  <name>dfs.namenode.rpc-address.jchadcluster01.nn2</name>
+  <value>jchadcen18.jalodata.fr:9000</value>
+</property>
+
+<property>
+  <description>webapp du NN1</description>
+  <name>dfs.namenode.http-address.jchadcluster01.nn1</name>
+  <value>jchadcen11.jalodata.fr:50070</value>
+</property>
+
+<property>
+  <description>webapp du NN2</description>
+  <name>dfs.namenode.http-address.jchadcluster01.nn2</name>
+  <value>jchadcen18.jalodata.fr:50070</value>
+</property>
+
+
+<property>
+  <description>Configuration du failover</description>
+  <name>dfs.client.failover.proxy.provider.jchadcluster01</name>
+  <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+</property>
+
+<property>
+  <description>Configuration du partage nfs pour les metadata</description>
+  <name>dfs.namenode.shared.edits.dir</name>
+  <value>file:///hadoopnfs</value>
+</property>
+
+<!-- Suppression de datanode -->
+<property>
+  <description>liste des DN a exclure</description>
+  <name>dfs.hosts.exclude</name>
+  <value>/opt/cluster/hadoop/etc/hadoop/dfs.excludes</value>
+  <final>true</final>
+</property>
+   
+<!-- Ajout de datanode -->
+<property>
+  <description>liste des DN a inclure</description>
+  <name>dfs.hosts</name>
+  <value>/opt/cluster/hadoop/etc/hadoop/dfs.includes</value>
+  <final>true</final>
+</property>
+   
+<!-- Definition du blocksize -->
+<property>
+  <description>Taille des blocks</description>
+  <name>dfsblocksize</name>
+  <value>67108864</value>
+</property>
+
+
+<!-- Facteur de replication -->
+<property>
+  <description>Facteur de Replication</description>
+  <name>dfsreplication</name>
+  <value>2</value>
+</property>
+
+<property>
+  <description>Duree de retention des fichiers supprimés en sec</description>
+  <name>fs.trash.interval</name>
+  <value>10800</value>
+</property>
+
+<property>
+  <description>Script de topology</description>
+  <name>topology.script.file.name</name>
+  <value>/opt/cluster/hadoop/etc/hadoop/topology.sh</value>
+</property>
+
+
+<!-- definit la frequence d'envoi des info au NN -->
+<property>
+  <description>frequence d'envoi des info au NN</description>
+  <name>dfs.blockreport.initialDelay</name>
+  <value>20</value>
+</property>
+
+<property>
+  <description>frequence d'envoi des info au NN</description>
+  <name>dfs.heartbeat.interval</name>
+  <value>3</value>
+</property>
+
+<property>
+  <description>frequence d'envoi des info au NN</description>
+  <name>dfs.namenode.heartbeat.recheck-interval</name>
+  <value>300000</value>
+</property>
+
+
+
+
+
+
+</configuration>
+

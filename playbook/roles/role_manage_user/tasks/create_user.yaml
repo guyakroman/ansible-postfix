@@ -33,6 +33,8 @@
   user:
     name: "{{ item.user }}"
     uid: "{{ item.uid }}"
+    password: "{{ item.user | password_hash('sha512') }}"
+    update_password: "on_create"
     group: "{{ item.group }}"
     groups: "{{ item.groups }}"
     generate_ssh_key: "{{ item.ssh_key }}"
@@ -42,4 +44,4 @@
     ssh_key_bits: 2048
     ssh_key_file: "{{ role_manage_user_ssh_key_file }}"
   loop: "{{ user_list }}"
-  when: R_CheckUser.changed
+  # when: R_CheckUser.changed

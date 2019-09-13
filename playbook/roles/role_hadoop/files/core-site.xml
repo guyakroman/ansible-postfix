@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+<property>
+  <description>Declaration du serveur hadoop</description>
+  <name>fs.defaultFS</name>
+  <value>hdfs://jchadcluster01</value>
+</property>
+
+<property>
+  <description>Declaration du quorum zookeeper</description>
+  <name>ha.zookeeper.quorum</name>
+  <value>jchadcen27.jalodata.fr:2181,jchadcen28.jalodata.fr:2181,jchadcen29.jalodata.fr:2181</value>
+</property>
+<!--
+<property>
+  <description>Declaration du nfs Gateway</description>
+  <name>hadoop.proxyuser.nfsserver.groups</name>
+  <value>*</value>
+</property>
+
+<property>
+  <description>Uniquement le Edge jouera le role de Gateway</description>
+  <name>hadoop.proxyuser.nfsserver.hosts</name>
+  <value>*</value>
+</property>
+
+-->
+
+<property>
+  <name>hadoop.proxyuser.hadoop.hosts</name>
+  <value>*</value>
+</property>
+
+<property>
+  <name>hadoop.proxyuser.hadoop.groups</name>
+  <value>*</value>
+</property>
+
+
+<property>
+  <name>hadoop.proxyuser.oozie.hosts</name>
+  <value>*</value>
+</property>
+
+<property>
+  <name>hadoop.proxyuser.oozie.groups</name>
+  <value>*</value>
+</property>
+
+</configuration>

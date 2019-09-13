@@ -2,5 +2,8 @@
 - name: "copy file {{ item }}"
   copy:
     src: "{{ item }}"
-    dest: "{{ sys_profile}}/{{ item }}"
-  loop: "{{ hadoop_file }}"
+    dest: "{{ hadoop_conf_dir}}/{{ item }}"
+    owner: hdfs
+    group: hadoop
+    recurse: yes
+  loop: "{{ hadoop_conf_file }}"

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+ <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
+
+
+<property>
+  <description>memory for Map (75% de la memoire)</description>
+  <name>mapreduce.map.memory.mb</name>
+  <value>2736</value>
+</property>
+
+
+<property>
+  <description>memory for Reduce</description>
+  <name>mapreduce.reduce.memory.mb</name>
+  <value>5461</value>
+</property>
+
+<!--
+<property>
+  <description>heap size java pour map</description>
+  <name>mapreduce.map.java.opts</name>
+  <value>-Xmx1152m</value>
+</property>
+
+<property>
+  <description>heap size java pour reduce</description>
+  <name>mapreduce.reduce.java.opts</name>
+  <value>-Xmx1280m</value>
+</property>
+-->
+<property>
+  <description>Nbre max de job mapreduce</description>
+  <name>mapreduce.job.counters.max</name>
+  <value>200</value>
+</property>
+
+<property>
+  <name>mapreduce.am.max-attempts</name>
+  <value>5</value>
+</property>
+<!-- 
+<property>
+  <name>mapred.jobtracker.taskScheduler</name>
+  <value>org.apache.hadoop.mapred.FairScheduler</value>
+</property>
+
+<property>
+  <name>mapred.fairscheduler.poolnameproperty</name>
+  <value>mapred.job.queue.name</value>
+</property>
+-->
+ 
+</configuration>
+

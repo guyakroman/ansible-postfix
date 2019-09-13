@@ -3,6 +3,8 @@
   hosts: datanode
   gather_facts: no
   become: true
+  vars_files:
+    - hadoop_password
   vars:
     group_list:
       - {
@@ -45,7 +47,7 @@
        }
 
   tasks:
-    - name: "create sytem group and users"
+    - name: "create system group and users"
       include_role:
         name: role_manage_user
       vars:
@@ -55,3 +57,14 @@
       include_role:
         name: role_manage_system
         tasks_from: manage_hosts.yaml
+
+    # - name: "add authorized key to user"
+    #   include_role:
+    #     name: role_manage_user
+    #     tasks_from: generate_ssh_key.yaml
+    #   delegate_to: datanode
+
+    - name: "copy config file"
+      include_role:
+        name: role_hadoop
+        tasks_from: deploy_file.yaml

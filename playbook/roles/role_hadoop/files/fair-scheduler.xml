@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<allocations>
+<queue name="root">
+<aclAdministerApps>hadoop</aclAdministerApps>
+<aclSubmitApps> </aclSubmitApps>
+  <queue name="prod">
+    <aclAdministerApps>hadoop</aclAdministerApps>
+    <aclSubmitApps>hpuser1</aclSubmitApps>
+    <minResources>1000 mb,0vcores</minResources>
+    <maxResources>6000 mb,0vcores</maxResources>
+    <maxRunningApps>20</maxRunningApps>
+    <weight>1.0</weight>
+    <schedulingPolicy>fair</schedulingPolicy>
+  </queue>
+
+  <queue name="dev">
+  <aclAdministerApps>hduser1</aclAdministerApps>
+  <aclSubmitApps>hduser1</aclSubmitApps>
+  <minResources>100 mb,0vcores</minResources>
+  <maxResources>3000 mb,0vcores</maxResources>
+  <weight>1.0</weight>
+  <schedulingPolicy>fair</schedulingPolicy>
+  </queue>
+</queue>
+  <user name="hadoop">
+    <maxRunningApps>5</maxRunningApps>
+  </user>
+
+  <user name="hpuser1">
+    <maxRunningApps>5</maxRunningApps>
+  </user>
+
+  <user name="hduser1">
+    <maxRunningApps>1</maxRunningApps>
+  </user>
+
+  <user name="hduser2">
+    <maxRunningApps>1</maxRunningApps>
+  </user>
+
+  <userMaxAppsDefault>5</userMaxAppsDefault>
+  
+  <queuePlacementPolicy>
+    <rule name="specified" />
+    <rule name="primaryGroup" create="false" />
+    <rule name="nestedUserQueue">
+    <rule name="secondaryGroupExistingQueue" create="false" />
+  </rule>
+  <rule name="default" queue="default"/>
+  </queuePlacementPolicy>
+
+</allocations>

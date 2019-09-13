@@ -1,0 +1,11 @@
+<allocations>
+  <pool name="pool_prod">
+    <minMaps>10</minMaps>
+    <maxReduces>5</maxReduces>
+  </pool>
+  
+  <pool name="pool_dev">
+    <minMaps>10</minMaps>
+    <maxReduces>5</maxReduces>
+  </pool>
+</allocations>

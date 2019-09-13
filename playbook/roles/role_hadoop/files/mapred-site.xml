@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+ <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
+
+<property>
+  <description>Nbre max de job mapreduce</description>
+  <name>mapreduce.job.counters.max</name>
+  <value>200</value>
+</property>
+
+<property>
+  <name>mapreduce.am.max-attempts</name>
+  <value>5</value>
+</property>
+<!-- 
+<property>
+  <name>mapred.jobtracker.taskScheduler</name>
+  <value>org.apache.hadoop.mapred.FairScheduler</value>
+</property>
+
+<property>
+  <name>mapred.fairscheduler.poolnameproperty</name>
+  <value>mapred.job.queue.name</value>
+</property>
+-->
+
+<property>
+<name>mapreduce.task.io.sort.mb</name>
+<value>200</value>
+</property>
+
+<property>
+<name>mapreduce.task.io.sort.factor</name>
+<value>24</value>
+</property>
+
+<property>
+<name>mapreduce.cluster.local.dir</name>
+<value>/data/tmp</value>
+</property>
+
+<property>
+<name>mapreduce.map.memory.mb</name>
+<value>2048</value>
+</property>
+
+<property>
+<name>mapreduce.reduce.memory.mb</name>
+<value>4096</value>
+</property>
+
+<property>
+<name>mapreduce.map.java.opts</name>
+<value>-Xmx1664m</value>
+</property>
+
+<property>
+<name>mapreduce.reduce.java.opts</name>
+<value>-Xmx3328m</value>
+</property>
+
+<property>
+<name>mapreduce.tasktracker.http.threads</name>
+<value>60</value>
+</property>
+
+<property>
+<name>mapreduce.reduce.shuffle.parallelcopies</name>
+<value>10</value>
+</property>
+
+<property>
+<name>mapreduce.map.output.compress</name>
+<value>true</value>
+</property>
+
+<property>
+<name>mapreduce.output.fileoutputformat.compress.type</name>
+<value>BLOCK</value>
+</property>
+
+<property>
+<name>mapreduce.map.output.compress.codec</name>
+<value>org.apache.hadoop.io.compress.SnappyCodec</value>
+</property>
+
+<property>
+<name>mapreduce.map.cpu.vcores</name>
+<value>1</value>
+</property>
+
+<property>
+<name>mapreduce.reduce.cpu.vcores</name>
+<value>1</value>
+</property>
+
+<property>
+<name>mapreduce.reduce.shuffle.input.buffer.percent</name>
+<value>0.70</value>
+</property>
+
+<property>
+<name>mapreduce.job.jvm.numtasks</name>
+<value>10</value>
+</property>
+
+<property>
+<name>mapreduce.job.reduce.slowstart.completedmaps</name>
+<value>0.20</value>
+</property>
+
+
+ 
+</configuration>
+

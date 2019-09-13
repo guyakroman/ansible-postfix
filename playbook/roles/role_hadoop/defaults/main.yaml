@@ -13,6 +13,7 @@ kernel.shmall: 4294967296
 network_interfaces:
   - ifcfg-enp0s3
 
+hadoop_conf_dir: /opt/cluster/hadoop/etc/hadoop
 sysctl_file: /etc/sysctl.conf
 java_security: $JAVA_HOME/jre/lib/security/java.security
 
@@ -20,23 +21,12 @@ sda_disk:
   - sda1
   - sda2
 
-packages:
-  - epel-release
-  - hdparm
-  - lsof
-  - unzip
-  - vim
-  - net-tools
-  - htop
-  - nc
-  - ntp
-  - psmisc
+hadoop_packages:
   # - dict
   # - jq
   - wget
   - maven
   - ntop
 
-hadoop_file:
-  - hadoop-env.sh
-  - hive-env.sh
+hadoop_conf_file:
+  - hdfs-site.xml

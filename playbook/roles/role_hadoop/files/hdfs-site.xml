@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+<!-- Emplacement du namenode -->
+<property>
+  <description>Nom du cluster</description>
+  <name>dfs.nameservices</name>
+  <value>jchadcluster01</value>
+</property>
+
+<property>
+  <description>Activation storage Policy</description>
+  <name>dfs.storage.policy.enabled</name>
+  <value>true</value>
+</property>
+
+<property>
+  <description>Emplacement des données</description>
+  <description>[DISK] Emplacement des données</description>
+  <description>[SSD] Emplacement des données</description>
+  <description>[ARCHIVE] Emplacement des données</description>
+  <description>[RAM] Emplacement des données</description>
+  <name>dfs.datanode.data.dir</name>
+  <value>[DISK]file:///data/datanode/disk,
+         [SSD]file:///data/datanode/ssd,
+         [ARCHIVE]file:///data/datanode/archive,
+         [RAM_DISK]file:///data/datanode/ram_disk</value>
+</property>
+
+<property>
+  <description>Emplacement des metadonnées</description>
+  <name>dfs.namenode.name.dir</name>
+  <value>file:///data/namenode</value>
+</property>
+
+<property>
+  <description>Emplacement des metadonnées</description>
+  <name>dfs.namenode.data.dir</name>
+  <value>file:///data/namenode</value>
+</property>
+
+
+<property>
+  <description>Membres du clusters NN</description>
+  <name>dfs.ha.namenodes.jchadcluster01</name>
+  <value>nn1,nn2</value>
+</property>
+
+<property>
+  <description>adresseIP:port NN1</description>
+  <name>dfs.namenode.rpc-address.jchadcluster01.nn1</name>
+  <value>jchadcen11.jalodata.fr:9000</value>
+</property>
+
+<property>
+  <description>adresseIP:port NN2</description>
+  <name>dfs.namenode.rpc-address.jchadcluster01.nn2</name>
+  <value>jchadcen18.jalodata.fr:9000</value>
+</property>
+
+<property>
+  <description>webapp du NN1</description>
+  <name>dfs.namenode.http-address.jchadcluster01.nn1</name>
+  <value>jchadcen11.jalodata.fr:50070</value>
+</property>
+
+<property>
+  <description>webapp du NN2</description>
+  <name>dfs.namenode.http-address.jchadcluster01.nn2</name>
+  <value>jchadcen18.jalodata.fr:50070</value>
+</property>
+
+<property>
+  <description>Configuration du failover</description>
+  <name>dfs.client.failover.proxy.provider.jchadcluster01</name>
+  <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+</property>
+
+<property>
+  <description>Configuration du nfs les metadata</description>
+  <name>dfs.namenode.shared.edits.dir</name>
+  <value>file:///hadoopnfs</value>
+</property>
+
+<!-- configuration du HA automatique -->
+<property>
+  <description>Activation du failover automatic</description>
+  <name>dfs.ha.automatic-failover.enabled</name>
+  <value>true</value>
+</property>
+
+<property>
+  <description>Emplacement du journal nodes pour les metadata</description>
+  <name>dfs.journalnode.edits.dir</name>
+  <value>/data/journalnode</value>
+</property>
+
+<property>
+  <description>Definition des machines de journal nodes. only zookeeper servers</description>
+  <name>dfs.namenode.shared.edits.dir</name>
+  <value>qjournal://jchadcen11.jalodata.fr:8485;jchadcen12.jalodata.fr:8485;jchadcen19.jalodata.fr:8485/jchadcluster01</value>
+</property>
+
+<property>
+  <description>Definition de la methode de fencing</description>
+  <name>dfs.ha.fencing.methods</name>
+  <value>sshfence</value>
+</property>
+
+<property>
+  <description>cle ssh pour le fencing avec le user par defaut hadoop</description>
+  <name>dfs.ha.fencing.ssh.private-key-files</name>
+  <value>/home/hadoop/.ssh/id_rsa</value>
+</property>
+
+<property>
+  <description>Temps a partir duquel on considere ko (ms)</description>
+  <name>dfs.ha.fencing.ssh.connect-timeout</name>
+  <value>30000</value>
+</property>
+
+<!-- FIN configuration du HA automatique -->
+
+<!-- Suppression de datanode -->
+<property>
+  <description>liste des DN a exclure</description>
+  <name>dfs.hosts</name>
+  <value>/opt/cluster/hadoop/etc/hadoop/dfs.includes</value>
+  <final>true</final>
+</property>
+
+<!-- Ajout de datanode -->
+<property>
+  <description>liste des DN a inclure</description>
+  <name>dfs.hosts.exclude</name>
+  <value>/opt/cluster/hadoop/etc/hadoop/dfs.excludes</value>
+  <final>true</final>
+</property>
+
+<!-- Definition du blocksize -->
+<property>
+  <description>Taille des blocks</description>
+  <name>dfs.blocksize</name>
+  <value>134217728</value>
+</property>
+
+<property>
+  <name>dfs.permissions.superusergroup</name>
+  <value>hadoop</value>
+  <description>The name of the group of super-users.
+    The value should be a single group name.
+  </description>
+</property>
+
+
+<!-- Facteur de replication -->
+<property>
+  <description>Facteur de Replication</description>
+  <name>dfs.replication</name>
+  <value>3</value>
+</property>
+
+<property>
+  <description>Duree de retention des fichiers supprimés en sec(3h)</description>
+  <name>fs.trash.interval</name>
+  <value>10800</value>
+</property>
+
+<property>
+  <description>Script de topology</description>
+  <name>topology.script.file.name</name>
+  <value>/opt/cluster/hadoop/etc/hadoop/topology.sh</value>
+</property>
+
+
+<!-- definit la frequence d'envoi des info au NN -->
+<property>
+  <description>frequence d'envoi des info au NN</description>
+  <name>dfs.blockreport.initialDelay</name>
+  <value>10</value>
+</property>
+
+<property>
+  <description>frequence d'envoi des info au NN(sec)</description>
+  <name>dfs.heartbeat.interval</name>
+  <value>3</value>
+</property>
+
+<property>
+  <description>frequence d'envoi des info au NN(ms)</description>
+  <name>dfs.namenode.heartbeat.recheck-interval</name>
+  <value>300000</value>
+</property>
+
+<!--
+<property>
+  <description>creation du rep tmp pour stockage des info temporaire</description>
+  <name>dfs.nfs3.dump.dir</name>
+  <value>/tmp/.hdfsnfs</value>
+</property>
+
+<property>
+  <description>Buffer de lecture</description>
+  <name>dfs.nfs.rtmax</name>
+  <value>1048576</value>
+</property>
+
+<property>
+  <description>Buffer d'ecriture</description>
+  <name>dfs.nfs.wtmax</name>
+  <value>65536</value>
+</property>
+
+<property>
+  <description>Control which hosts can mount the exports from the Hadoop cluster</description>
+  <name>dfs.nfs.exports.allowed.hosts</name>
+  <value>* rw</value>
+</property>
+
+-->
+
+
+<property>
+  <name>dfs.namenode.handler.count</name>
+  <value>60</value>
+</property>
+
+<property>
+  <name>dfs.namenode.safemode.extension</name>
+  <value>50000</value>
+</property>
+
+<property>
+  <name>dfs.namenode.decommission.blocks.per.interval</name>
+  <value>500000</value>
+</property>
+
+<property>
+<name>dfs.namenode.support.allow.format</name>
+<value>false</value>
+</property>
+
+
+<property>
+<name>dfs.datanode.handler.count</name>
+<value>40</value>
+</property>
+
+<property>
+<name>dfs.datanode.max.transfer.threads</name>
+<value>8192</value>
+</property>
+
+<property>
+<name>dfs.datanode.directoryscan.threads</name>
+<value>2</value>
+</property>
+
+<property>
+<name>dfs.datanode.balance.bandwidthPerSec</name>
+<value>1048576</value>
+</property>
+
+<!--
+<property>
+<name>dfs.datanode.failed.volumes.tolerated</name>
+<value>2</value>
+</property>
+-->
+
+<property>
+<name>dfs.datanode.fsdataset.volume.choosing.policy</name>
+<value>org.apache.hadoop.hdfs.server.datanode.fsdataset.AvailableSpaceVolumeChoosingPolicy</value>
+</property>
+
+<property>
+<name>dfs.datanode.available-space-volume-choosing-policy.balanced-space-threshold</name>
+<value>10737418240</value>
+</property>
+
+<property>
+<name>dfs.datanode.available-space-volume-choosing-policy.balanced-space-preference-fraction</name>
+<value>0.75f</value>
+</property>
+
+
+</configuration>

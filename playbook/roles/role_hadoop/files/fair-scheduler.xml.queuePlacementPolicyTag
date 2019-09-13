@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<allocations>
+  <queue name="prod">
+    <minResources>100 mb,0vcores</minResources>
+    <maxResources>4000 mb,0vcores</maxResources>
+    <maxRunningApps>20</maxRunningApps>
+    <maxAMShare>0.2</maxAMShare>
+    <weight>1.0</weight>
+    <schedulingPolicy>fair</schedulingPolicy>
+  </queue>
+
+  <queue name="dev">
+    <minResources>100 mb,0vcores</minResources>
+    <maxResources>3000 mb,0vcores</maxResources>
+    <maxAMShare>0.6</maxAMShare>
+    <weight>1.0</weight>
+    <schedulingPolicy>fair</schedulingPolicy>
+  </queue>
+
+  <user name="hadoop">
+    <maxRunningApps>5</maxRunningApps>
+  </user>
+
+  <user name="hduser1">
+    <maxRunningApps>1</maxRunningApps>
+  </user>
+
+  <user name="hduser2">
+    <maxRunningApps>1</maxRunningApps>
+  </user>
+
+  <userMaxAppsDefault>5</userMaxAppsDefault>
+  
+  <queuePlacementPolicy>
+    <rule name="specified" />
+    <rule name="primaryGroup" create="false" />
+    <rule name="nestedUserQueue">
+    <rule name="secondaryGroupExistingQueue" create="false" />
+  </rule>
+  <rule name="default" queue="default"/>
+  </queuePlacementPolicy>
+</allocations>

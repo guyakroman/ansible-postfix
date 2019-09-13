@@ -1,0 +1,151 @@
+<configuration>
+<property>
+  <name>yarn.scheduler.capacity.root.queues</name>
+  <value>default,prod,dev,lab</value>
+</property>
+
+<property>
+  <description>Maximum percent of resources in the cluster which can be used to run application masters - controls number of concurrent active applications. Limits on each queue are directly proportional to their queue capacities and user limits.</description>
+  <name>yarn.scheduler.capacity.maximum-am-resource-percent</name>
+  <value>0.2</value>
+</property>
+
+<!--
+<property>
+  <description>
+      A list of mappings that will be used to assign jobs to queues
+      The syntax for this list is [u|g]:[name]:[queue_name][,next mapping]*
+      Typically this list will be used to map users to queues,
+      for example, u:%user:%user maps all users to queues with the same name
+      as the user.
+    </description>
+  <name>yarn.scheduler.capacity.queue-mappings</name>
+  <value>u:hadoop:prod,u:hpuser1:prod,u:hduser1:dev,u:%user:default</value>
+</property>
+-->
+
+<property>
+  <description>This is the percentage of the total capacity allocated to the default queue</description>
+  <name>yarn.scheduler.capacity.root.default.capacity</name>
+  <value>10</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.capacity.root.prod.capacity</name>
+  <value>50</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.capacity.root.dev.capacity</name>
+  <value>20</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.capacity.root.lab.capacity</name>
+  <value>20</value>
+</property>
+
+<!-- POURCETAGE UTILISATIONDES QUEUES --> 
+<property>
+  <name>yarn.scheduler.capacity.root.prod.user-limit-factor</name>
+  <value>1</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.capacity.root.dev.user-limit-factor</name>
+  <value>1</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.capacity.root.prod.maximum-capacity</name>
+  <value>100</value>
+</property>
+
+<!-- ASSOCIATION DES NODES LABELS AUX QUEUES -->
+<!--
+<property>
+  <name>yarn.scheduler.capacity.root.accessible-node-labels.memory.capacity</name>
+  <value>100</value>
+</property>
+-->
+
+<!-- Configuration de la queue prod au label -->
+<!--
+<property>
+  <name>yarn.scheduler.capacity.root.prod.accessible-node-labels</name>
+  <value>memory</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.capacity.root.prod.accessible-node-labels.memory.capacity</name>
+  <value>100</value>
+</property>
+
+-->
+<!-- ETAT AU DEMARRAGE -->
+<property>
+  <name>yarn.scheduler.capacity.root.prod.state</name>
+  <value>RUNNING</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.capacity.root.dev.state</name>
+  <value>RUNNING</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.capacity.root.default.state</name>
+  <value>RUNNING</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.capacity.root.lab.state</name>
+  <value>RUNNING</value>
+</property>
+
+<!-- mise en place des ACL -->
+<property>
+  <name>yarn.scheduler.capacity.root.default.acl_administer_queue</name>
+  <value>*</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.capacity.root.default.acl_submit_applications</name>
+  <value>*</value>
+</property>
+
+
+<property>
+  <name>yarn.scheduler.capacity.root.prod.acl_administer_queue</name>
+  <value>*</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.capacity.root.prod.acl_submit_applications</name>
+  <value>*</value>
+</property>
+
+
+<property>
+  <name>yarn.scheduler.capacity.root.dev.acl_administer_queue</name>
+  <value>*</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.capacity.root.dev.acl_submit_applications</name>
+  <value>*</value>
+</property>
+
+
+<property>
+  <name>yarn.scheduler.capacity.root.lab.acl_administer_queue</name>
+  <value>hadoop</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.capacity.root.lab.acl_submit_applications</name>
+  <value>*</value>
+</property>
+
+
+</configuration>

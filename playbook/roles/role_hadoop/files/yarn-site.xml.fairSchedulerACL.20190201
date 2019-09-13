@@ -1,0 +1,287 @@
+<?xml version="1.0"?>
+
+<configuration>
+<!-- RM HA Configurations-->
+<property>
+  <description>Activation du HA automatique</description>
+  <name>yarn.resourcemanager.ha.enabled</name>
+  <value>true</value>
+</property>
+
+<property>
+  <description>Nom du cluster Yarn</description>
+  <name>yarn.resourcemanager.cluster-id</name>
+  <value>jcyarncluster01</value>
+</property>
+
+<property>
+  <description>nodes in the cluster</description>
+  <name>yarn.resourcemanager.ha.rm-ids</name>
+  <value>rm1,rm2</value>
+</property>
+
+<property>
+  <description>hostname nodes yarn rm1</description>
+  <name>yarn.resourcemanager.hostname.rm1</name>
+  <value>jchadcen12.jalodata.fr</value>
+</property>
+
+<property>
+  <description>hostname nodes yarn rm2</description>
+  <name>yarn.resourcemanager.hostname.rm2</name>
+  <value>jchadcen17.jalodata.fr</value>
+</property>
+
+<property>
+  <description>Resourcemanger Web UI</description>
+  <name>yarn.resourcemanager.webapp.address.rm1</name>
+  <value>jchadcen12.jalodata.fr:8088</value>
+</property>
+
+<property>
+  <description>Resourcemanger Web UI</description>
+  <name>yarn.resourcemanager.webapp.address.rm2</name>
+  <value>jchadcen17.jalodata.fr:8088</value>
+</property>
+
+
+<property>
+  <description>Scheduler RM1</description>
+  <name>yarn.resourcemanager.scheduler.address.rm1</name>
+  <value>jchadcen12.jalodata.fr:9002</value>
+</property>
+
+<property>
+  <description>Scheduler RM2</description>
+  <name>yarn.resourcemanager.scheduler.address.rm2</name>
+  <value>jchadcen17.jalodata.fr:9002</value>
+</property>
+
+<property>
+  <description>resource tracker RM1</description>
+  <name>yarn.resourcemanager.resource-tracker.address.rm1</name>
+  <value>jchadcen12.jalodata.fr:9001</value>
+</property>
+
+<property>
+  <description>resource tracker RM2</description>
+  <name>yarn.resourcemanager.resource-tracker.address.rm2</name>
+  <value>jchadcen17.jalodata.fr:9001</value>
+</property>
+
+<property>
+  <description>@IP ressource manager RM1</description>
+  <name>yarn.resourcemanager.address.rm1</name>
+  <value>jchadcen12.jalodata.fr:9003</value>
+</property>
+
+<property>
+  <description>@IP ressource manager</description>
+  <name>yarn.resourcemanager.address.rm2</name>
+  <value>jchadcen17.jalodata.fr:9003</value>
+</property>
+
+<property>
+  <description>Configuration Zookeeper</description>
+  <name>hadoop.zk.address</name>
+  <!-- <name>yarn.resourcemanager.zk-address</name> -->
+  <value>jchadcen12.jalodata.fr:2181,jchadcen11.jalodata.fr:2181,jchadcen19.jalodata.fr:2181</value>
+</property>
+
+<property>
+  <description>Activation du rmstore</description>
+  <name>yarn.resourcemanager.recovery.enabled</name>
+  <value>true</value>
+</property>
+
+<!-- <property>
+       <description>Specification du state-store utilisé</description>
+  <name>yarn.resourcemanager.store.class</name>
+  <value>org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore</value>
+</property> -->
+
+<property>
+  <description>Option par defaut est /yarn-leader-election</description>
+  <name>yarn.resourcemanager.ha.automatic-failover.zk-base-path</name>
+  <value>/yarn-leader-election</value>
+</property>
+
+<!-- <property>
+       <description>Emplacement du RMstate store sur zookeeper</description>
+  <name>yarn.resourcemanager.zk-state-store.parent-path</name>
+  <value>/yarn/rmstore</value>
+</property> -->
+
+<property>
+  <description>Duree attente avant d'allouer de nouveaux container on RM work-preserving recovery.</description>
+  <name>yarn.resourcemanager.work-preserving-recovery.scheduling-wait-ms</name>
+  <value>10000</value>
+</property>
+
+
+<property>
+  <description>Specification du state-store utilisé</description>
+  <name>yarn.resourcemanager.store.class</name>
+  <value>org.apache.hadoop.yarn.server.resourcemanager.recovery.FileSystemRMStateStore</value>
+</property>
+
+<property>
+  <description>Emplacement du state-store</description>
+  <name>yarn.resourcemanager.fs.state-store.uri</name>
+  <value>/yarn/system/rmstore</value>
+</property>
+
+
+<!-- FIN RM HA CONFIGURATION -->
+
+<!-- RM SERVICES CONFIGURATION -->
+<property>
+  <description></description>
+  <name>yarn.nodemanager.aux-services</name>
+  <value>mapreduce_shuffle</value>
+</property>
+
+<property>
+<description></description>
+  <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+  <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+</property>
+
+<!-- RM SERVICES CONFIGURATION -->
+
+<property>
+  <description>configuration heartbeat en secondes</description>
+  <name>dfs.heartbeat.interval</name>
+  <value>3</value>
+</property>
+
+<property>
+  <description>configuration heartbeat en millisecondes</description>
+  <name>dfs.namenode.heartbeat.recheck-interval</name>
+  <value>300000</value>
+</property>
+
+<property>
+  <description>Activation de l'aggregation des logs yarn</description>
+  <name>yarn.log-aggregation-enable</name>
+  <value>true</value>
+</property>
+
+<!-- RM JOB HISTORY SERVER CONFIGURATION -->
+<property>
+  <description>Ajout de l'adresse du server job history</description>
+  <name>mapreduce.jobhistory.address</name>
+  <value>jchadcen12.jalodata.fr:10020</value>
+</property>
+
+<property>
+  <description>Ajout du web server job history</description>
+  <name>mapreduce.jobhistory.webapp.address</name>
+  <value>jchadcen12.jalodata.fr:19888</value>
+</property>
+
+<property>
+  <description>Emplacement de stockage des logs pour aggregation</description>
+  <name>yarn.nodemanager.remote-app-log-dir</name>
+  <value>/tmp/logs</value>
+</property>
+
+<property>
+  <description>Duree de retention des logs en secondes</description>
+  <name>yarn.nodemanager.log.retain-seconds</name>
+  <value>10800</value>
+</property>
+<!-- RM JOB HISTORY SERVER CONFIGURATION -->
+
+
+<property>
+  <description>Monitoirng de la vie Application Master (AM)</description>
+  <name>yarn.am.liveness-monitor.expiry-interval-ms</name>
+  <value>10000</value>
+</property>
+
+<property>
+  <description>Nbre de tentatives de lancement AM par application</description>
+  <name>yarn.resourcemanager.am.max-attempts</name>
+  <value>5</value>
+</property>
+
+
+<property>
+  <description>max de memoire total dans le node qui peut etre par
+  utilisé par Yarn pour lancer des containers en MBs. </description>
+  <name>yarn.nodemanager.resource.memory.mb</name>
+  <value>11264</value>
+</property>
+
+<property>
+  <description>memoire utilise par AM in MBs. </description>
+  <name>yarn.app.mapreduce.am.resource.mb</name>
+  <value>1536</value>
+</property>
+
+
+<property>
+  <description>The minimum allocation for every container request at the RM in MBs. </description>
+  <name>yarn.scheduler.minimum-allocation-mb</name>
+  <value>512</value>
+</property>
+
+<property>
+  <description>The maximum allocation for every container request at the RM in MBs. </description>
+  <name>yarn.scheduler.maximum-allocation-mb</name>
+  <value>11264</value>
+</property>
+
+<property>
+  <description>The minimum allocation for every container request at the RM,
+  in terms of virtual CPU cores. </description>
+  <name>yarn.scheduler.minimum-allocation-vcores</name>
+  <value>1</value>
+</property>
+
+<property>
+  <description>The maximum allocation for every container request at the RM,
+  in terms of virtual CPU cores. </description>
+  <name>yarn.scheduler.maximum-allocation-vcores</name>
+  <value>16</value>
+</property>
+
+<property>
+  <description>Definition du ratio de memoire physique et virtuel </description>
+  <name>yarn.nodemanager.vmem-pmem-ratio</name>
+  <value>3.0</value>
+</property>
+
+<property>
+  <description>Activation du check de memoire physique</description>
+  <name>yarn.manager.pmem-check-enabled</name>
+  <value>true</value>
+</property>
+
+<property>
+  <description>Activation du check de memoire virtuelle</description>
+  <name>yarn.manager.vmem-check-enabled</name>
+  <value>true</value>
+</property>
+
+
+<property>
+  <description>Gestion de l'allocation de ressources</description>
+  <name>yarn.resourcemanager.scheduler.class</name>
+  <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler</value>
+</property>
+
+<property>
+  <description>Emplacement du fichier de FairScheduler</description>
+  <name>yarn.scheduler.fair.allocation.file</name>
+  <value>/opt/cluster/hadoop/etc/hadoop/fair-scheduler.xml</value>
+</property>
+
+
+
+
+
+
+</configuration>
+
