@@ -7,10 +7,14 @@
   import_tasks: configure_bashrc.yaml
   when: state in ['create']
   
-# - name: "deploy ssh key for user"
-#   import_tasks: deploy_sshkey.yaml
-#   when: state in ['create']
-#
+#- name: "deploy ssh key for user"
+#  import_tasks: generate_ssh_key.yaml
+#  when: state in ['create']
+
+- name: "deploy ssh key for user"
+  import_tasks: deploy_sshkey.yaml
+  when: state in ['create']
+
 
 #
 # - name: "delete user "

@@ -1,0 +1,18 @@
+---
+- name: visu du home
+  stat:
+    path: "{{ role_manage_user_home}}/{{ role_manage_user_ssh_key_file }}.pub"
+  loop: "{{ user_list }}"
+  register: StatUser  
+  delegate_to: jcdevops20
+
+- debug:
+    var: StatUser
+
+- name: Set authorized key taken from file
+  authorized_key:
+    user: "{{ item.user }}"
+    state: present
+    key: "{{lookup('file', '{{ role_manage_user_home}}/{{ role_manage_user_ssh_key_file }}.pub')}}"
+  loop: "{{ user_list }}"
+  delegate_to: jcdevops20

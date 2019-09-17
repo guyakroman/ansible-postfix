@@ -3,5 +3,6 @@
   authorized_key:
     user: "{{ item.user }}"
     state: present
-    key: "{{ lookup('file', ''+role_manage_user_home+'/'+role_manage_user_ssh_key_file+'.pub') }}"
+    key: "{{lookup('file', '/tmp/id_rsa.pub')}}"
   loop: "{{ user_list }}"
+  delegate_to: jcdevops20

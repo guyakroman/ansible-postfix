@@ -1,11 +1,28 @@
 ---
-- name: slurp the pubkey for passing to other servers as authorized_key
-  slurp:
+- name: fetch the pubkey for passing to other servers as authorized_key
+  fetch:
     src: "{{role_manage_user_home}}/{{role_manage_user_ssh_key_file}}.pub"
-  register: ssh_pubkey
+    dest: "/tmp/keys"
+  loop: "{{ user_list}}"
 
-- name: "add authorized key to user {{ item.user }}"
-  authorized_key:
-    user: "{{ item.user }}"
-    state: present
-    key: "{{ ssh_pubkey }}"
+- name: "find all rsa key"
+  find:
+    paths: "/tmp/keys"
+    recurse: true
+    patterns: "*id_rsa.pub"
+  register: R_keys
+  run_once: true
+  delegate_to: localhost
+
+- name: "add authorized key to user"
+  include_tasks: autorized.yml
+  with_items: "{{ R_keys.files }}"
+  loop_control:
+    loop_var: file
+
+- name: delete temporay file of ssh public keys
+  file:
+    path: "/tmp/keys"
+    state: absent
+  delegate_to: localhost
+  run_once: true

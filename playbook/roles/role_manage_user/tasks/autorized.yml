@@ -1,0 +1,9 @@
+---
+- name: add key
+  authorized_key:
+    user: "{{ item.user }}"
+    state: present
+    key: "{{ lookup('file', '{{ file.path }}') }}"
+  when: item.user in file.path 
+  with_items: "{{ user_list}}"
+
