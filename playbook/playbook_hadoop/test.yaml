@@ -1,6 +1,6 @@
 ---
 - name: deploy hadoop cluster users
-  hosts: datanode
+  hosts: testplay
   gather_facts: no
   become: true
   vars_files:
@@ -57,8 +57,3 @@
       include_role:
         name: role_manage_system
         tasks_from: manage_hosts.yaml
-
-    - name: "copy config file"
-      include_role:
-        name: role_hadoop
-        tasks_from: deploy_file.yaml
