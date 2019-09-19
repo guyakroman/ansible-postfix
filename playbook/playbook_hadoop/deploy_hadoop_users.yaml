@@ -1,11 +1,21 @@
 ---
 - name: deploy hadoop cluster users
-  hosts: datanode
+  hosts: hadoop
   gather_facts: no
   become: true
   vars_files:
     - hadoop_password
   vars:
+    hadoop_conf_dir:
+      - /opt/cluster/hadoop-2.9.2
+    hadoop_directory:
+      - /data/
+      - /data/datanode
+      - /data/namenode
+      - /data/journalnode/jchadcluster01
+    hadoop_log_directory:
+      - /var/log
+      - /var/log/hadoop
     group_list:
       - {
         name: "hadoop",
@@ -62,3 +72,35 @@
       include_role:
         name: role_hadoop
         tasks_from: deploy_file.yaml
+
+    - name: "create directory"
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: hdfs
+        group: hdfs
+        mode: "0775"
+        recurse: yes
+      loop: "{{ hadoop_directory}}"
+
+    - name: "create log directory"
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: hdfs
+        group: hadoop
+        mode: "0775"
+        recurse: yes
+      loop: "{{ hadoop_log_directory}}"
+
+    - name: "apply the good rights"
+      file:
+        path: "{{hadoop_conf_dir}}"
+        owner: "hdfs"
+        state: directory
+        recurse: yes
+        force: yes
+
+    - name: "configure secure zones"
+      include_tasks: HDFS_encryption_at_Rest.yaml
+      delegate_to: hadoop

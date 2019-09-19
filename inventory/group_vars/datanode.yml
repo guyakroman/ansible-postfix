@@ -1,0 +1,4 @@
+---
+directory:
+  - /data/datanode
+  - /var/log/hadoop

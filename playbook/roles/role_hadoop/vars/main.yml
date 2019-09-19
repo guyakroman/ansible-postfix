@@ -1,0 +1,8 @@
+---
+krb_packages:
+   - krb5-server
+   - krb5-libs
+   - krb5-workstation
+
+kdc_server: "jchadcen01.jalodata.fr"
+admin_server: "jchadcen01.jalodata.fr"

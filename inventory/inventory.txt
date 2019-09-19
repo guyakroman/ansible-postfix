@@ -60,3 +60,9 @@ jchadcen01
 
 [test_playbook]
 jchadcen130
+
+[hadoop: children]
+datanode
+namenode
+resourcemanager
+edgenode

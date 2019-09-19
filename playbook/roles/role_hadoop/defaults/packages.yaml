@@ -14,3 +14,4 @@ packages:
   - wget
   - maven
   - ntop
+  - openssl-devel

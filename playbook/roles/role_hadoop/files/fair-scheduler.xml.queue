@@ -1,0 +1,21 @@
+<allocations>
+  <queue name="prod_queue">
+    <minResources>10000 mb,0vcores</minResources>
+    <maxResources>90000 mb,0vcores</maxResources>
+    <maxRunningApps>50</maxRunningApps>
+    <maxAMShare>0.3</maxAMShare>
+    <weight>2.0</weight>
+    <schedulingPolicy>fair</schedulingPolicy>
+  </queue>
+  
+  <queueMaxAMShareDefault>0.5</queueMaxAMShareDefault> 
+  
+  <queue name="dev_queue">
+    <minResources>5000 mb,0vcores</minResources>
+    <maxResources>10000 mb,0vcores</maxResources>
+    <maxRunningApps>30</maxRunningApps>
+    <maxAMShare>0.1</maxAMShare>
+    <weight>2.0</weight>
+    <schedulingPolicy>fair</schedulingPolicy>
+  </queue>
+</allocations>

@@ -1,0 +1,26 @@
+---
+- name: " configure the core-site.xml"
+  blockinfile:
+    path: "{{hadoop_conf_dir}}/core-site.xml"
+    backup: true
+    block: |
+      <property>
+        <name>hadoop.security.key.provider.path</name>
+        <value>kms://http@jchadcluster01:16000/kms</value>
+      </property>
+
+- name: " configure the hdfs-site.xml"
+  blockinfile:
+    path:  "{{hadoop_conf_dir}}/hdfs-site.xml"
+    backup: yes
+    block: |
+      <property>
+        <name>dfs.encryption.key.provider.uri</name>
+        <value>kms://http@jchadcluster01:16000/kms</value>
+      </property>
+
+- name: "apply the goo rights"
+  file:
+    path: "{{hadoop_conf_dir}}"
+    owner: "hdfs"
+    group: "hadoop"

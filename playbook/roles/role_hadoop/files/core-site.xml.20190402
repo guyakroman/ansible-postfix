@@ -41,20 +41,4 @@
   <value>*</value>
 </property>
 
-
-<property>
-  <name>hadoop.proxyuser.oozie.hosts</name>
-  <value>*</value>
-</property>
-
-<property>
-  <name>hadoop.proxyuser.oozie.groups</name>
-  <value>*</value>
-</property>
-
-<property>
-  <name>hadoop.security.key.provider.path</name>
-  <value>kms://http@jchadcen11.jalodata.fr:16000/kms</value>
-</property>
-
 </configuration>

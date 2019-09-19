@@ -23,10 +23,11 @@ sda_disk:
 
 hadoop_packages:
   # - dict
-  # - jq
+  - jq
   - wget
   - maven
   - ntop
+  - openssl-devel
 
 hadoop_conf_file:
   - hdfs-site.xml
