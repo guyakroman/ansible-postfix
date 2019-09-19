@@ -29,7 +29,7 @@ pdsh -w jchadcen[11,18] sudo -u hdfs jps
 pdsh -w jchadcen[13-16] sudo -u hdfs jps
 
 echo -e " \n====== Status Zookeeper ======"
-pdsh -w jchadcen[27,28,29] /opt/cluster/zookeeper/bin/zkServer.sh status
+pdsh -w jchadcen[27-29] /opt/cluster/zookeeper/bin/zkServer.sh status
 
 echo -e " \n====== Status Hive ======"
 pdsh -w jchadcen[19] jps | grep RunJar

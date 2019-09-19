@@ -114,7 +114,7 @@
 <property>
   <description>cle ssh pour le fencing avec le user par defaut hadoop</description>
   <name>dfs.ha.fencing.ssh.private-key-files</name>
-  <value>/home/hdfs/.ssh/id_rsa</value>
+  <value>/home/hadoop/.ssh/id_rsa</value>
 </property>
 
 <property>
@@ -241,7 +241,7 @@
 
 <property>
 <name>dfs.namenode.support.allow.format</name>
-<value>true</value>
+<value>false</value>
 </property>
 
 
@@ -289,6 +289,8 @@
 
 <property>
  <name>dfs.encryption.key.provider.uri</name>
- <value>kms://http@jchadcen11.jalodata.fr:16000/kms</value>
+ <value>kms://http@jchadcluster01:16000/kms</value>
 </property>
+</configuration>
+
 </configuration>

@@ -53,4 +53,4 @@ export KMS_HTTP_PORT=16000
 # (For eg. location of natively compiled tomcat Apache portable
 # runtime (APR) libraries
 #
-# export JAVA_LIBRARY_PATH=${HOME}/lib/native
+export JAVA_LIBRARY_PATH=/opt/cluster/hadoop/lib/native
