@@ -22,6 +22,7 @@ sys_packages:
   - "ntp"
   - "psmisc"
   - "lsof"
+  - pexpect-2.3-11.el7.noarch
   # - "telnet"
   # - maven
   # - "java"

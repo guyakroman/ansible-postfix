@@ -1,5 +1,5 @@
 ---
-- name: update hosts on ansible server
+- name: deploy hosts file on server
   copy:
     src: files/hosts
     dest: /etc/hosts

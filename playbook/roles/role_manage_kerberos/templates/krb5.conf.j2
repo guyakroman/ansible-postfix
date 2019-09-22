@@ -1,0 +1,32 @@
+#########################################################
+#            DO NOT MODIFY THIS FILE                    #
+#            IT GENERATE BY ANSIBLE                     #
+#########################################################
+
+# Configuration snippets may be placed in this directory as well
+includedir /etc/krb5.conf.d/
+
+[logging]
+   default = FILE:{{ krb_directory[0] }}/krb5libs.log
+   kdc = FILE:{{ krb_directory[0] }}/krb5kdc.log
+   admin_server = FILE:{{ krb_directory[0] }}/kadmind.log
+
+[libdefaults]
+   dns_lookup_realm = false
+   ticket_lifetime = 24h
+   renew_lifetime = 7d
+   forwardable = true
+   rdns = false
+   pkinit_anchors = /etc/pki/tls/certs/ca-bundle.crt
+   default_realm = {{ domain_name | upper }}
+   default_ccache_name = /tmp/krb5ccn_%{uid}
+
+[realms]
+  {{ domain_name | upper }} = {
+  kdc = {{ kdc_server }}
+  admin_server = {{ kdc_admin_server }}
+ }
+
+[domain_realm]
+  .{{ domain_name }} = {{ domain_name | upper }}
+  {{ domain_name }} = {{ domain_name | upper }}

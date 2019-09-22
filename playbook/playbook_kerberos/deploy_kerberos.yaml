@@ -1,0 +1,16 @@
+---
+- name: deploy kerberos server
+  hosts: admin
+  gather_facts: no
+  become: true
+  tasks:
+    - name: "copy the hosts files on machine"
+      include_role:
+        name: role_manage_system
+        tasks_from: manage_hosts.yaml
+
+    - name: "apply kerberos role"
+      include_role:
+        name: role_manage_kerberos
+      vars:
+        state: install

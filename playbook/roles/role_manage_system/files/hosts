@@ -32,3 +32,32 @@
 192.168.1.38	jchadcen38.jalodata.fr	jchadcen38
 192.168.1.39	jchadcen39.jalodata.fr	jchadcen39
 192.168.1.130	jchadcen130.jalodata.fr	jchadcen130
+
+
+#####################################
+
+192.168.43.166 jchadcen01.jalodata.fr jchadcen01
+192.168.43.168 jcdevops01.jalodata.fr jcdevops01
+
+# zookeeper
+192.168.43.20 jcdevops20.jalodata.fr jcdevops20
+192.168.43.22 jcdevops22.jalodata.fr jcdevops22
+192.168.43.23 jcdevops23.jalodata.fr jcdevops23
+192.168.43.50 jchadcen50.jalodata.fr jchadcen50
+192.168.43.51 jchadcen51.jalodata.fr jchadcen51
+192.168.43.52 jchadcen52.jalodata.fr jchadcen52
+192.168.43.53 jchadcen53.jalodata.fr jchadcen53
+
+
+# kafka
+192.168.43.35 jchadcen100.jalodata.fr jchadcen100
+# 192.168.43.124 jcdevops24.jalodata.fr jcdevops24
+# 192.168.43.25 jcdevops25.jalodata.fr jcdevops25
+
+# admin sur pc home
+192.168.43.173 jcdevops10.jalodata.fr jcdevops10
+
+# cluster test
+192.168.43.175 jcdevops11.jalodata.fr jcdevops11
+192.168.43.174 jcdevops12.jalodata.fr jcdevops12
+192.168.43.176 jcdevops13.jalodata.fr jcdevops13

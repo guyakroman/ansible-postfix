@@ -1,0 +1,10 @@
+---
+- name: "disable selinux"
+  selinux:
+    state: disabled
+
+- name: "disable firewalld"
+  systemd:
+    name: firewalld
+    enabled: no
+    state: stopped
