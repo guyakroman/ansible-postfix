@@ -1,0 +1,10 @@
+---
+- name: configure hostname
+  hostname:
+    name: "{{ hosts_vars['hbase'] }}.{{ domain_name }}"
+
+- name: configure network
+  template:
+    src: "{{ sys_network_src}}"
+    dest: "{{ sys_network_dest }}"
+  notify: restart network

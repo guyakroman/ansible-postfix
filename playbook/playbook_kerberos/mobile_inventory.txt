@@ -1,0 +1,8 @@
+[admin]
+jcdevops01
+
+[zookeeper]
+jcdevops[11:13]
+
+[jenkins]
+jcdevops01

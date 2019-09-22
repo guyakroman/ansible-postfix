@@ -1,0 +1,6 @@
+---
+- name: deploy hosts file on server
+  copy:
+    src: files/hosts
+    dest: /etc/hosts
+  # delegate_to: localhost

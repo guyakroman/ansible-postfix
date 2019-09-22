@@ -1,0 +1,30 @@
+---
+app_user: "jcadmin"
+app_group: "hadoop"
+app_uid: "1001"
+app_gid: "2001"
+
+java_bin: "jdk-8u211-linux-x64.rpm"
+
+sys_dir:
+  - "{{ sys_log }}"
+  - "{{ sys_data }}"
+  - "{{ sys_app }}"
+  - "{{ sys_repo }}"
+
+sys_packages:
+  - "wget"
+  - "epel-release"
+  - "unzip"
+  - "vim"
+  - "net-tools"
+  - "nc"
+  - "ntp"
+  - "psmisc"
+  - "lsof"
+  - pexpect-2.3-11.el7.noarch
+  # - "telnet"
+  # - maven
+  # - "java"
+  # - dict
+  # - jq

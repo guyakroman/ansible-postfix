@@ -1,0 +1,9 @@
+---
+- name: "create directory {{ item }}"
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ app_user }}"
+    group: "{{ app_group }}"
+    mode: "{{ sys_mode }}"
+  loop: "{{ sys_dir }}"

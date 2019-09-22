@@ -1,0 +1,22 @@
+---
+- name: copy java binary
+  copy:
+    src: "{{ sys_repo }}/{{ java_bin }}"
+    dest: "{{ sys_repo }}"
+    owner: "{{ sys_user }}"
+    group: "{{ app_group }}"
+
+- name: install java
+  yum:
+    name: "{{ sys_repo }}/{{ java_bin }}"
+    state: present
+
+- name: "configure profile.d for java"
+  template:
+    src: "java.sh.j2"
+    dest: "{{ sys_profile }}/java.sh"
+
+- name: "Execute profile.d for java"
+  command: ". {{ sys_profile }}/java.sh"
+  become: true
+  ignore_errors: true
