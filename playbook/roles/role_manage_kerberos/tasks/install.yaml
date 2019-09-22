@@ -1,0 +1,44 @@
+---
+- name: install kerberos server
+  yum:
+    name: "{{ krb_package }}"
+
+- name: create directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ krb_user }}"
+    group: "{{ krb_group }}"
+  loop: "{{ krb_directory }}"
+
+- name: create files
+  file:
+    path: "{{ krb_directory[0] }}/{{ item }}"
+    state: file
+    owner: "{{ krb_user }}"
+    group: "{{ krb_group }}"
+  loop: "{{ krb_logfile }}"
+
+- name: configure krb5kdc
+  template:
+    src: "krb5.conf.j2"
+    dest: "/etc/krb5.conf"
+    owner: "{{ krb_user }}"
+    group: "{{ krb_group }}"
+    backup: yes
+
+- name: configure krb files
+  template:
+    src: "{{ item }}.j2"
+    dest: "/var/kerberos/krb5kdc/{{ item }}"
+    owner: "{{ krb_user }}"
+    group: "{{ krb_group }}"
+    backup: yes
+  loop: "{{ krb_confFile }}"
+
+- name : create kdc database
+  command: /usr/sbin/kdb5_util create -s -P {{ krb5kdb_password }}
+  register: R_creates_db
+  ignore_errors: true
+  changed_when: R_creates_db.rc == 0
+  no_log: true

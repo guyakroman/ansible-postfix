@@ -1,0 +1,26 @@
+---
+krb_user: "root"
+krb_group: "root"
+
+krb_package:
+  - krb5-server
+  - krb5-libs
+  - krb5-workstation
+
+krb_directory:
+  - "/var/log/kerberos"
+
+krb_logfile:
+  - "krb5kdc.log"
+  - "kadmind.log"
+  - "krb5libs.log"
+
+krb_confFile:
+  - "kadm5.acl"
+  - "kdc.conf"
+
+krb5kdb_password: "kerberosdb"
+domain_name: "jalodata.fr"
+
+kdc_server: "jcdevops01.jalodata.fr"
+kdc_admin_server: "jcdevops01.jalodata.fr"

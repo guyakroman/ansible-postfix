@@ -1,0 +1,12 @@
+---
+- name: enable krb5kdc
+  systemd:
+    name: krb5kdc
+    state: started
+    enabled: yes
+
+- name: enable kadmin
+  systemd:
+    name: kadmin
+    state: started
+    enabled: yes
