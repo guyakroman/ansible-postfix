@@ -1,0 +1,9 @@
+---
+keytab_dir: "/var/tmp/keytab"
+keytab_local_dir: "/tmp/keytab"
+hadoop_keytab_dir: "/opt/cluster/security"
+
+keytab_mode: "0400"
+
+kdc_server: "jcdevops01.jalodata.fr"
+kdc_admin_server: "jcdevops01.jalodata.fr"

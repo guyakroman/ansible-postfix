@@ -1,0 +1,73 @@
+---
+- name: check that all variables are transmitted
+  assert:
+    that: "{{ item }} is defined"
+  loop:
+    - keytab_user
+
+- name: check that principal exists before created
+  command: "kadmin.local getprincs {{ item.user }}/{{ ansible_fqdn}}"
+  register:  r_check_princ
+  loop: "{{ keytab_user }}"
+  changed_when: false
+  delegate_to: "{{ kdc_server }}"
+
+- name: "create principal"
+  command: kadmin.local -q "addprinc -randkey {{ item.user }}/{{ ansible_fqdn }}"
+  loop: "{{ keytab_user }}"
+  register: r_create_princ
+  loop_control:
+    index_var: my_idx
+  when: item.user not in r_check_princ.results[my_idx].stdout
+  delegate_to: "{{ kdc_server }}"
+
+- name: "check if keytab exists"
+  stat:
+    path: "{{ hadoop_keytab_dir }}/{{ item.user }}.keytab"
+  register: r_check_keytab
+  loop: "{{ keytab_user }}"
+
+- name: "create keytab"
+  command: kadmin.local -q "ktadd -norandkey -k {{ keytab_dir }}/{{ item.user }}.keytab {{ item.user }}/{{ ansible_fqdn }}"
+  loop: "{{ keytab_user}}"
+  register: r_create_keytab
+  loop_control:
+    index_var: my_idx
+  when: r_check_keytab.results[my_idx].stat.exists == false
+  delegate_to: "{{ kdc_server }}"
+
+- name: "download keytab from kdc_server to local"
+  fetch:
+    src: "{{ keytab_dir }}/{{ item.user }}.keytab"
+    dest: "{{ keytab_local_dir }}"
+    validate_checksum: true
+  loop: "{{ keytab_user }}"
+  loop_control:
+    index_var: my_idx
+  delegate_to : "{{ kdc_server }}"
+  when: r_create_keytab.results[my_idx].stdout is defined
+
+- name: "copy keytab from local to destination"
+  copy:
+    src: "{{ keytab_local_dir }}/{{inventory_hostname}}/{{ keytab_dir }}/{{ item.user }}.keytab"
+    dest: "{{ hadoop_keytab_dir }}"
+    checksum: true
+  loop: "{{ keytab_user }}"
+  loop_control:
+    index_var: my_idx
+  delegate_to : "{{ kdc_server }}"
+  when: r_create_keytab.results[my_idx].stdout is defined
+
+- name: "Apply the good rights on keytab"
+  file:
+    path: "{{ hadoop_keytab_dir }}/{{ item.user }}.keytab"
+    owner: "{{ item.user}}"
+    mode: "{{ keytab_mode}}"
+    group: "{{ item.group }}"
+  loop: "{{ keytab_user }}"
+
+- name: delete keytab on temporary directory
+  file:
+    path: "{{ keytab_local_dir }}/{{inventory_hostname}}"
+    state: absent
+  delegate_to: "{{ kdc_server }}"

@@ -1,0 +1,3 @@
+---
+- import_tasks: create_keytab.yaml
+  when: state in ['create']
