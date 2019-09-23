@@ -9,6 +9,7 @@ krb_package:
 
 krb_directory:
   - "/var/log/kerberos"
+  - "/var/tmp/keytab"
 
 krb_logfile:
   - "krb5kdc.log"
