@@ -1,0 +1,13 @@
+---
+- name: Create keytab for user
+  hosts: admin
+  gather_facts: true
+  become: true
+  vars:
+    keytab_user:
+      - {
+        user: "jcadmin",
+        group: "jcadmin"
+        }
+  roles:
+    - { role: role_manage_keytab, state: create }

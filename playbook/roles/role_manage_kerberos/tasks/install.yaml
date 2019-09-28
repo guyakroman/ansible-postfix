@@ -9,11 +9,13 @@
     state: directory
     owner: "{{ krb_user }}"
     group: "{{ krb_group }}"
-  loop: "{{ krb_directory }}"
+  loop:
+    - "{{ krb_log_dir }}"
+    - "{{ krb_keytab_temp_dir }}"
 
 - name: create files
   file:
-    path: "{{ krb_directory[0] }}/{{ item }}"
+    path: "{{ krb_log_dir }}/{{ item }}"
     state: file
     owner: "{{ krb_user }}"
     group: "{{ krb_group }}"
@@ -35,10 +37,11 @@
     group: "{{ krb_group }}"
     backup: yes
   loop: "{{ krb_confFile }}"
+  notify: "restart kdc"
 
 - name : create kdc database
   command: /usr/sbin/kdb5_util create -s -P {{ krb5kdb_password }}
   register: R_creates_db
   ignore_errors: true
   changed_when: R_creates_db.rc == 0
-  no_log: true
+  #no_log: true

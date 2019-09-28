@@ -1,0 +1,20 @@
+---
+- name: Create hadoop keytab for user
+  hosts: admin
+  gather_facts: true
+  become: true
+  vars:
+    princ_group:
+      - hdfs
+      - yarn
+      - mapred
+    keytab_user:
+      - {
+        keytab_user: "jcadmin"
+        }
+      - {
+        user: dn,
+        group: test
+        }
+  roles:
+    - { role: role_manage_keytab, state: create }

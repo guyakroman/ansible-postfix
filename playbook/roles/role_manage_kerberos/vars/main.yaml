@@ -7,9 +7,11 @@ krb_package:
   - krb5-libs
   - krb5-workstation
 
-krb_directory:
-  - "/var/log/kerberos"
-  - "/var/tmp/keytab"
+kdc_ports: "88"
+kdc_tcp_ports: "88"
+
+krb_keytab_temp_dir: "/var/tmp/keytab"
+krb_log_dir: "/var/log/kerberos"
 
 krb_logfile:
   - "krb5kdc.log"
@@ -23,5 +25,6 @@ krb_confFile:
 krb5kdb_password: "kerberosdb"
 domain_name: "jalodata.fr"
 
+realm: "JCHAD"
 kdc_server: "jcdevops01.jalodata.fr"
 kdc_admin_server: "jcdevops01.jalodata.fr"
